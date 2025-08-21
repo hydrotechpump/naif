@@ -650,3 +650,87 @@
   </script>
 </body>
 </html>
+<!-- ... everything from the previous HTML stays the same until just before the #admin section ... -->
+
+<!-- Admin Login -->
+<section id="admin-login" style="padding:60px 0; background:#f6f9ff; text-align:center;">
+  <div class="container">
+    <h3 class="title" style="font-size:28px">Admin Login</h3>
+    <p class="muted">Enter password to manage products</p>
+    <input id="admin-pass" type="password" placeholder="Password" 
+           style="padding:12px; border:1px solid #dbe3f0; border-radius:10px; font-size:16px; margin-top:10px;">
+    <br><br>
+    <button class="btn primary" onclick="checkAdminPassword()">Login</button>
+    <p id="login-msg" style="color:red; display:none; margin-top:10px;">Incorrect password</p>
+  </div>
+</section>
+
+<!-- Admin: Manage Products -->
+<section id="admin" style="display:none;">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="kicker">Product manager</div>
+        <h3 class="title" style="font-size:28px">Add, import, and manage products</h3>
+        <p class="muted" style="margin-top:6px">Products are saved in your browser (local). Export JSON to move to another device or host.</p>
+      </div>
+    </div>
+
+    <div class="admin-grid">
+      <div class="panel">
+        <h4>Add a product</h4>
+        <div class="field"><label>Product name</label><input id="p-name" type="text" placeholder="e.g., 4&quot; Submersible Pump" /></div>
+        <div class="field"><label>Price</label><input id="p-price" type="number" min="0" step="0.01" placeholder="e.g., 26500"/></div>
+        <div class="field"><label>Category</label>
+          <select id="p-category">
+            <option>Submersible Pumps</option>
+            <option>Motors</option>
+            <option>Control Panels</option>
+            <option>Surface Pumps</option>
+            <option>Sewage Pumps</option>
+            <option>Agricultural Systems</option>
+            <option>Spare Parts</option>
+          </select>
+        </div>
+        <div class="field"><label>Description</label><textarea id="p-desc" rows="3" placeholder="Key specs or notes"></textarea></div>
+        <div class="field"><label>Image</label><input id="p-image" type="file" accept="image/*"/></div>
+        <div class="actions">
+          <button class="btn primary" onclick="addProduct()">Add product</button>
+          <button class="btn ghost" onclick="clearForm()">Clear form</button>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h4>Import/Export</h4>
+        <p class="muted">Import a .json or .csv file with columns: name,price,category,description,image (URL optional).</p>
+        <div class="actions" style="margin:8px 0">
+          <label class="btn blue" for="import-file-2" style="cursor:pointer">Import file</label>
+          <input id="import-file-2" type="file" accept=".json,.csv" style="display:none" onchange="importProducts(this.files[0])"/>
+          <button class="btn ghost" onclick="exportProducts()">Export JSON</button>
+          <button class="btn ghost" onclick="seedDemo()">Load demo items</button>
+          <button class="btn ghost" onclick="clearAllProducts()">Clear all</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ... footer and rest of the HTML ... -->
+
+<script>
+  // Existing scripts from before remain here...
+
+  // Admin password gate
+  const ADMIN_PASSWORD = "Naif123"; // Change this to your own password
+
+  function checkAdminPassword(){
+    const input = document.getElementById('admin-pass').value;
+    if(input === ADMIN_PASSWORD){
+      document.getElementById('admin-login').style.display = 'none';
+      document.getElementById('admin').style.display = 'block';
+      window.location.hash = '#admin';
+    } else {
+      document.getElementById('login-msg').style.display = 'block';
+    }
+  }
+</script>
