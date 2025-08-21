@@ -1,94 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Naif Enterprise — Professional Submersible Pumps & Motors</title>
-  <meta name="description" content="Naif Enterprise: Direct importer of submersible pumps & motors. Wholesale & retail. Premium brands. Unbeatable prices."/>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    /* --- All styles from earlier version (colors, layout, animations) --- */
-    /* For brevity, I’m keeping the CSS exactly as in the previous full site I gave you */
-    /* Paste the full CSS from that file here */
-  </style>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "Naif Enterprise",
-    "description": "Wholesale and retail supplier of submersible pumps and motors.",
-    "address": {"@type":"PostalAddress","addressLocality":"Rawalpindi","addressRegion":"Punjab","addressCountry":"PK"},
-    "telephone": "+923339708541",
-    "email": "gulabafridi1985@gmail.com",
-    "url": "https://naifenterprise.pk",
-    "areaServed": "Pakistan"
-  }
-  </script>
+<meta charset="UTF-8">
+<title>Naif Enterprise - Submersible Pumps & Motors</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  body { font-family: Inter, sans-serif; margin: 0; background: #f6f9ff; }
+  header { background: linear-gradient(90deg, #0052cc, #00aaff); padding: 15px 20px; color: #fff; display: flex; justify-content: space-between; align-items: center; }
+  header h1 { margin: 0; font-size: 1.5rem; }
+  nav a { color: #fff; text-decoration: none; margin-left: 15px; font-weight: 600; }
+  .container { padding: 20px; }
+  #admin { display: none; background: #fff; padding: 20px; border-radius: 10px; margin-top: 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+  footer { background: #003366; color: #fff; text-align: center; padding: 15px; margin-top: 40px; }
+  .btn { background: #ff6600; color: #fff; padding: 10px 15px; border-radius: 6px; text-decoration: none; font-weight: 600; }
+  .btn:hover { background: #e65c00; }
+</style>
 </head>
 <body>
-  <!-- Topbar -->
-  <!-- ... same as before ... -->
 
-  <!-- Header -->
-  <!-- ... same as before ... -->
+<header>
+  <h1>Naif Enterprise</h1>
+  <nav>
+    <a href="#products">Products</a>
+    <a href="admin.html" class="btn">Admin Login</a>
+  </nav>
+</header>
 
-  <!-- Hero -->
-  <!-- ... same as before ... -->
+<div class="container">
+  <h2>Welcome to Naif Enterprise</h2>
+  <p>We are direct importers and suppliers of submersible pumps and motors, serving wholesale and retail clients.</p>
 
-  <!-- Store -->
-  <!-- ... same as before ... -->
-
-  <!-- Services -->
-  <!-- ... same as before ... -->
-
-  <!-- Catalog & Quote -->
-  <!-- ... same as before ... -->
-
-  <!-- Contact -->
-  <!-- ... same as before ... -->
-
-  <!-- Admin Login -->
-  <section id="admin-login" style="padding:60px 0; background:#f6f9ff; text-align:center;">
-    <div class="container">
-      <h3 class="title" style="font-size:28px">Admin Login</h3>
-      <p class="muted">Enter password to manage products</p>
-      <input id="admin-pass" type="password" placeholder="Password" 
-             style="padding:12px; border:1px solid #dbe3f0; border-radius:10px; font-size:16px; margin-top:10px;">
-      <br><br>
-      <button class="btn primary" onclick="checkAdminPassword()">Login</button>
-      <p id="login-msg" style="color:red; display:none; margin-top:10px;">Incorrect password</p>
-    </div>
+  <section id="products">
+    <h3>Our Products</h3>
+    <p>Product catalog will be displayed here.</p>
   </section>
 
-  <!-- Admin: Manage Products -->
-  <section id="admin" style="display:none;">
-    <!-- Full Manage Products section from earlier file goes here -->
+  <!-- Hidden Admin Section -->
+  <section id="admin">
+    <h3>Admin Panel</h3>
+    <p>Manage your products here.</p>
+    <!-- Example admin controls -->
+    <button onclick="alert('Add Product Function')">Add Product</button>
+    <button onclick="alert('Edit Product Function')">Edit Product</button>
+    <button onclick="alert('Delete Product Function')">Delete Product</button>
   </section>
+</div>
 
-  <!-- Footer -->
-  <!-- ... same as before ... -->
+<footer>
+  <p>&copy; 2025 Naif Enterprise. All rights reserved.</p>
+</footer>
 
-  <!-- Sticky quick actions -->
-  <!-- ... same as before ... -->
-
-  <script>
-    /* --- All your existing JavaScript from earlier version here --- */
-    /* Product storage, rendering, import/export, etc. */
-
-    // Admin password gate
-    const ADMIN_PASSWORD = "Naif123"; // Change this to your own password
-
-    function checkAdminPassword(){
-      const input = document.getElementById('admin-pass').value;
-      if(input === ADMIN_PASSWORD){
-        document.getElementById('admin-login').style.display = 'none';
+<script>
+  // Show admin section only if logged in
+  window.addEventListener('DOMContentLoaded', () => {
+    if(window.location.hash === '#admin'){
+      if(sessionStorage.getItem('adminLoggedIn') === 'true'){
         document.getElementById('admin').style.display = 'block';
-        window.location.hash = '#admin';
       } else {
-        document.getElementById('login-msg').style.display = 'block';
+        window.location.href = 'admin.html';
       }
     }
-  </script>
+  });
+</script>
+
 </body>
 </html>
