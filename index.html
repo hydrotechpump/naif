@@ -1,718 +1,241 @@
-<!DOCTYPE html>
+Put your HTML text <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Naif Enterprise — Professional Submersible Pumps & Motors</title>
-  <meta name="description" content="Naif Enterprise: Direct importer of submersible pumps & motors. Wholesale & retail. Premium brands. Unbeatable prices."/>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Naif Enterprise — Submersible Pumps & Motors</title>
+  <meta name="description" content="Naif Enterprise — Importers & Suppliers of submersible pumps, motors, and related accessories. Wholesale & retail, best prices, full after-sales support." />
   <style>
-    :root{
-      --blue:#1166ff;
-      --blue-2:#0052cc;
-      --orange:#ff7a18;
-      --orange-2:#ff9a3c;
-      --ink:#0f172a;
-      --muted:#64748b;
-      --soft:#f6f9ff;
-      --bg:#ffffff;
-      --ring: rgba(17,102,255,.25);
-      --radius:14px;
-      --shadow:0 14px 40px rgba(16,34,87,.12);
-      --shadow-sm:0 10px 24px rgba(16,34,87,.10);
-    }
+    :root{--accent:#0b74de;--dark:#0b2535;--muted:#6b7a86;--card:#f7f9fb}
     *{box-sizing:border-box}
-    html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;line-height:1.5}
-    img{max-width:100%;display:block}
-    a{color:inherit;text-decoration:none}
-    .container{width:min(1200px,92%);margin:0 auto}
-    .btn{display:inline-flex;align-items:center;gap:10px;padding:13px 18px;border-radius:12px;border:1px solid transparent;font-weight:700;cursor:pointer;transition:.2s ease;box-shadow:var(--shadow-sm)}
-    .btn.primary{background:linear-gradient(135deg,var(--orange),var(--orange-2));color:#fff}
-    .btn.primary:hover{transform:translateY(-1px);filter:saturate(1.1)}
-    .btn.blue{background:linear-gradient(135deg,var(--blue),var(--blue-2));color:#fff}
-    .btn.ghost{background:#fff;border-color:#dbe3f0;color:#0b295f}
-    .tag{display:inline-block;background:#fff;border:1px solid #e2e8f0;color:#0b295f;padding:6px 10px;border-radius:999px;font-weight:700;font-size:12px}
-    .kicker{color:var(--blue);font-weight:800;letter-spacing:.3px;margin-bottom:8px}
-    .title{font-size:40px;line-height:1.1;margin:8px 0 12px}
-    .muted{color:var(--muted)}
-    .shadow{box-shadow:var(--shadow)}
-
-    /* Topbar */
-    .topbar{background:var(--soft);border-bottom:1px solid #eef2f7;font-size:14px}
-    .topbar .wrap{display:flex;align-items:center;justify-content:space-between;padding:8px 0}
-    .contact-links{display:flex;align-items:center;gap:16px;color:var(--muted)}
-    .badge{background:linear-gradient(135deg,var(--blue),var(--blue-2));color:#fff;padding:4px 10px;border-radius:999px;font-weight:800;font-size:12px}
-
-    /* Header */
-    header{position:sticky;top:0;z-index:40;background:#fff;border-bottom:1px solid #eef2f7;backdrop-filter:saturate(140%) blur(4px)}
-    .nav{height:68px;display:flex;align-items:center;justify-content:space-between}
+    body{font-family:Inter,ui-sans-serif,system-ui,Segoe UI,Roboto,Helvetica,Arial;color:#16202a;margin:0;line-height:1.5;background:#fbfcfe}
+    header{background:linear-gradient(90deg, rgba(11,116,222,0.1), rgba(11,116,222,0.03));border-bottom:1px solid rgba(11,116,222,0.06)}
+    .container{max-width:1100px;margin:0 auto;padding:24px}
+    nav{display:flex;align-items:center;justify-content:space-between;gap:12px}
     .brand{display:flex;align-items:center;gap:12px}
-    .logo{width:36px;height:36px;border-radius:8px;background:
-      conic-gradient(from 140deg,var(--orange),var(--orange-2),var(--blue),var(--blue-2),var(--orange));box-shadow:inset 0 0 0 2px rgba(255,255,255,.6)}
-    .brand h1{font-size:18px;margin:0}
-    nav ul{display:flex;gap:24px;list-style:none;margin:0;padding:0}
-    nav a{font-weight:700;color:#183055}
-    nav a:hover{color:var(--blue)}
-    .nav-cta{display:flex;gap:10px;align-items:center}
-    .burger{display:none;border:0;background:transparent;font-size:26px}
+    .logo{width:56px;height:56px;border-radius:10px;background:var(--accent);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:20px}
+    .nav-links{display:flex;gap:18px;align-items:center}
+    a{color:inherit;text-decoration:none}
+    .btn{background:var(--accent);color:#fff;padding:10px 14px;border-radius:8px;display:inline-block}
 
-    /* Hero with animated gradient */
-    .hero{position:relative;isolation:isolate;padding:72px 0;background:
-      radial-gradient(900px 500px at 85% -10%, rgba(17,102,255,.18), transparent 60%),
-      radial-gradient(900px 500px at -10% 20%, rgba(255,122,24,.18), transparent 60%)}
-    .hero::before{
-      content:"";position:absolute;inset:-20% -10% -10% -10%;z-index:-1;
-      background:linear-gradient(135deg,rgba(17,102,255,.22),rgba(255,122,24,.22));
-      filter:blur(60px);animation:floater 10s ease-in-out infinite alternate
-    }
-    @keyframes floater{to{transform:translateY(20px) translateX(10px)}}
-    .hero-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center}
-    .hero p{font-size:18px;color:#435168;margin:0 0 18px}
-    .hero-card{background:#fff;border:1px solid #e7eef8;border-radius:var(--radius);padding:18px}
-    .hero-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:8px}
-    .hero-list li{list-style:none;display:flex;gap:10px;align-items:center;background:#fff;border:1px solid #e7eef8;padding:10px;border-radius:12px;font-weight:700;color:#334155}
-    .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;padding:48px 0}
+    .hero h1{font-size:34px;margin:0 0 14px}
+    .hero p{color:var(--muted);margin:0 0 18px}
+    .features{display:flex;gap:12px;flex-wrap:wrap}
+    .card{background:#fff;padding:18px;border-radius:12px;box-shadow:0 6px 18px rgba(16,24,40,0.06);border:1px solid rgba(11,116,222,0.03)}
 
-    /* Brands marquee */
-    .brands{padding:18px 0;border-top:1px solid #eef2f7;border-bottom:1px solid #eef2f7;background:#fff}
-    .marquee{overflow:hidden;white-space:nowrap}
-    .marquee .track{display:inline-block;animation:scroll 20s linear infinite}
-    .marquee span{display:inline-block;margin:0 18px;padding:8px 14px;border:1px dashed #d7e3f7;border-radius:999px;font-weight:800;color:#183055;background:#fff}
-    @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+    /* Products */
+    .products{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:28px 0}
+    .product{padding:16px;border-radius:10px;background:linear-gradient(180deg,#fff,#fbfdff);text-align:center}
+    .product img{width:100%;height:160px;object-fit:contain}
+    .product h4{margin:10px 0 6px}
+    .price{color:var(--accent);font-weight:700}
 
-    /* Sections & cards */
-    section{padding:60px 0}
-    .section-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:18px}
-    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-    .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-    .card{background:#fff;border:1px solid #e7eef8;border-radius:14px;overflow:hidden;transition:transform .25s ease, box-shadow .25s ease}
-    .card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
-    .card .img{height:170px;background:linear-gradient(135deg,#eef7ff,#fff8f1);display:flex;align-items:center;justify-content:center;color:#0f3f9e;font-weight:800;text-align:center;padding:10px}
-    .card .body{padding:16px}
-    .pill{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;padding:6px 10px;border-radius:999px;color:#fff;background:linear-gradient(135deg,var(--blue),var(--blue-2))}
-    .pill.orange{background:linear-gradient(135deg,var(--orange),var(--orange-2))}
-
-    /* CTA band */
-    .cta-band{background:linear-gradient(135deg,var(--blue),var(--orange));color:#fff;border-radius:16px;padding:26px;display:flex;align-items:center;justify-content:space-between;gap:12px}
-    .cta-band h4{margin:0;font-size:22px}
-
-    /* Footer */
-    footer{background:#0a1529;color:#c7d2e1;padding-top:40px;margin-top:20px}
-    .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:28px}
-    footer h5{color:#fff;margin:0 0 10px}
-    footer ul{list-style:none;margin:0;padding:0}
-    footer ul li{margin-bottom:6px}
-    .copy{border-top:1px solid #1f2a3d;margin-top:20px;padding:12px 0;color:#91a0b4;font-size:14px;text-align:center}
-
-    /* Sticky quick actions */
-    .sticky{position:fixed;right:18px;bottom:18px;display:flex;flex-direction:column;gap:10px;z-index:50}
-    .fab{border-radius:999px;padding:12px 14px;background:#fff;border:1px solid #dbe3f0;box-shadow:var(--shadow);transition:.2s}
-    .fab:hover{transform:translateY(-2px)}
-    .fab.primary{background:linear-gradient(135deg,var(--blue),var(--blue-2));color:#fff;border-color:transparent}
-
-    /* Admin (product upload) */
-    #admin{background:var(--soft);border-top:1px solid #eef2f7}
-    .admin-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:18px}
-    .panel{background:#fff;border:1px solid #e7eef8;border-radius:14px;padding:16px}
-    .panel h4{margin:0 0 10px}
-    .field{display:grid;gap:6px;margin-bottom:10px}
-    input[type="text"],input[type="number"],input[type="file"],textarea,select{
-      padding:12px;border:1px solid #dbe3f0;border-radius:10px;font:inherit
-    }
-    .actions{display:flex;gap:10px;flex-wrap:wrap}
-
-    /* Reveal on scroll */
-    .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease, transform .6s ease}
-    .reveal.in{opacity:1;transform:none}
+    /* About & Contact */
+    .split{display:grid;grid-template-columns:1fr 360px;gap:20px}
+    .contact-card{position:sticky;top:20px}
+    form input, form textarea{width:100%;padding:10px;margin-bottom:10px;border-radius:8px;border:1px solid #e6eef8}
+    footer{padding:30px 0;margin-top:30px;background:#fff;border-top:1px solid rgba(11,116,222,0.03)}
 
     /* Responsive */
-    @media (max-width: 980px){
-      .hero-grid{grid-template-columns:1fr}
-      .grid-3{grid-template-columns:1fr 1fr}
-      .grid-4{grid-template-columns:1fr 1fr}
-      .footer-grid{grid-template-columns:1fr 1fr}
-      nav ul{display:none}
-      .burger{display:block}
-      .nav.open ul{display:flex;position:absolute;top:68px;left:0;right:0;background:#fff;flex-direction:column;gap:0;border-bottom:1px solid #eef2f7}
-      .nav.open ul li a{display:block;padding:14px 24px;border-top:1px solid #f2f5fb}
-      .admin-grid{grid-template-columns:1fr}
-    }
-    @media (max-width: 640px){
-      .grid-3,.grid-4{grid-template-columns:1fr}
-      .title{font-size:34px}
-      .cta-band{flex-direction:column;align-items:stretch}
-    }
-    :focus{outline:3px solid var(--ring);outline-offset:2px}
-  </style>
+    @media (max-width:980px){.hero{grid-template-columns:1fr} .products{grid-template-columns:repeat(2,1fr);} .split{grid-template-columns:1fr}}
+    @media (max-width:560px){.products{grid-template-columns:1fr} .nav-links{display:none} .logo{width:44px;height:44px}}
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "Naif Enterprise",
-    "description": "Wholesale and retail supplier of submersible pumps and motors.",
-    "address": {"@type":"PostalAddress","addressLocality":"Rawalpindi","addressRegion":"Punjab","addressCountry":"PK"},
-    "telephone": "+923339708541",
-    "email": "gulabafridi1985@gmail.com",
-    "url": "https://naifenterprise.pk",
-    "areaServed": "Pakistan"
-  }
-  </script>
+    /* small utilities */
+    .muted{color:var(--muted)}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .badge{display:inline-block;padding:6px 10px;border-radius:999px;background:#e9f3ff;color:var(--accent);font-weight:600}
+  </style>
 </head>
 <body>
-  <!-- Topbar -->
-  <div class="topbar">
-    <div class="container wrap">
-      <div class="contact-links">
-        <a href="tel:+923339708541">📞 +92 333 9708541</a>
-        <a href="mailto:gulabafridi1985@gmail.com">✉️ gulabafridi1985@gmail.com</a>
-        <span>⏰ Mon–Sat 9:00–6:00</span>
-      </div>
-      <span class="badge">Wholesale & Retail</span>
-    </div>
-  </div>
-
-  <!-- Header -->
   <header>
-    <div class="container nav" id="nav">
-      <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
-        <h1>Naif Enterprise</h1>
-      </div>
+    <div class="container">
       <nav>
-        <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#store">Store</a></li>
-          <li><a href="#brands">Brands</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li><a href="#admin">Manage Products</a></li>
-        </ul>
+        <div class="brand">
+          <div class="logo">NE</div>
+          <div>
+            <div style="font-weight:700">Naif Enterprise</div>
+            <div style="font-size:12px;color:var(--muted)">Submersible Pumps & Motors — Importers & Suppliers</div>
+          </div>
+        </div>
+        <div class="nav-links">
+          <a href="#products">Products</a>
+          <a href="#about">About</a>
+          <a href="#blog">Blog</a>
+          <a href="#contact">Contact</a>
+          <a class="btn" href="https://wa.me/923112345678?text=Hello%20Naif%20Enterprise%20I%27m%20interested">WhatsApp</a>
+        </div>
       </nav>
-      <div class="nav-cta">
-        <a class="btn ghost" href="mailto:gulabafridi1985@gmail.com">Email us</a>
-        <a class="btn blue" href="https://wa.me/923339708541" target="_blank" rel="noopener">WhatsApp</a>
-        <button class="burger" aria-label="Toggle menu" onclick="toggleNav()">☰</button>
-      </div>
     </div>
   </header>
 
-  <!-- Hero -->
-  <main id="home" class="hero">
-    <div class="container hero-grid">
-      <div class="reveal">
-        <span class="tag">Professional Submersible Pumps & Motors</span>
-        <h2 class="title">Direct importer. Premium brands. Unbeatable prices.</h2>
-        <p>From deep‑well submersibles to control panels, we stock reliable solutions for agriculture, housing, and industry.</p>
-        <div class="hero-card">
-          <strong>Why choose us</strong>
-          <ul class="hero-list">
-            <li>Factory‑direct sourcing</li>
-            <li>1‑year warranty</li>
-            <li>Genuine spare parts</li>
-            <li>Nationwide delivery</li>
-          </ul>
+  <main class="container">
+    <section class="hero">
+      <div>
+        <div class="badge">Direct Importer — Wholesale & Retail</div>
+        <h1>Naif Enterprise — Reliable Submersible Pumps for Pakistan</h1>
+        <p class="muted">We supply high-performance submersible pumps, motors, and spares. Brands we stock: Dongyin, Hydro Pro, Pedrollo and many more. Best prices, installation & warranty support across Pakistan.</p>
+        <div class="features">
+          <div class="card">Free delivery on bulk orders</div>
+          <div class="card">Local warranty & spare parts</div>
+          <div class="card">Technical support & installation</div>
         </div>
-        <div class="cta">
-          <a class="btn primary" href="#quote">Send Quote Request</a>
-          <a class="btn ghost" href="#catalog">View Catalog</a>
+        <div style="margin-top:18px">
+          <a class="btn" href="#contact">Request Quote</a>
+          <a style="margin-left:12px;color:var(--muted)" href="#products">View Products →</a>
         </div>
       </div>
-      <div class="reveal">
-        <div class="card shadow">
-          <div class="img" role="img" aria-label="Display of submersible pumps and motors">
-            YOUR PRODUCT PHOTO
-          </div>
-          <div class="body">
-            <span class="pill orange">Hot</span>
-            <strong style="display:block;margin-top:8px">Submersible pump sets</strong>
-            <p class="muted" style="margin-top:6px">Stainless steel impellers, high‑efficiency motors. Bulk pricing available.</p>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <!-- Brands marquee -->
-    <section id="brands" class="brands">
-      <div class="container marquee" aria-label="Brand list">
-        <div class="track">
-          <span>Dongyin</span><span>Hydro Pro</span><span></span><span></span><span></span>
-          <span>Dongyin</span><span>Hydro Pro</span><span></span><span></span><span></span>
+      <aside class="card contact-card">
+        <h3 style="margin-top:0">Get a quick quote</h3>
+        <p class="muted">Tell us your requirement — pump type, head, and flow.</p>
+        <ul style="list-style:none;padding:0;margin:12px 0 0">
+          <li><strong>Phone:</strong> +92 311 234 5678</li>
+          <li><strong>Email:</strong> info@naifenterprise.com</li>
+          <li><strong>WhatsApp:</strong> <a href="https://wa.me/923112345678">+92 311 234 5678</a></li>
+        </ul>
+        <div style="margin-top:12px;font-size:13px;color:var(--muted)">Open: Mon - Sat, 9:00 - 18:00</div>
+      </aside>
+    </section>
+
+    <section id="products">
+      <h2>Top Selling Submersible Pumps</h2>
+      <p class="muted">Our bestsellers — suitable for domestic, agricultural, and industrial use.</p>
+
+      <div class="products">
+        <article class="product card">
+          <img src="https://images.openai.com/thumbnails/url/y3fQcHicu1mUUVJSUGylr5-al1xUWVCSmqJbkpRnoJdeXJJYkpmsl5yfq5-Zm5ieWmxfaAuUsXL0S7F0Tw6uiAhIzzVN8wg3NMvPzvQ3dEnLNvY2DCj2jc8vz8zxCzd3K_WxyDVPdgwMMAgKDQnK9PLMyDQrLvRWKwYAvhgo2w" alt="Dongyin 2.5 Inch Deep Well Pump">
+          <h4>2.5" Deep Well Pump (2SDM Series)</h4>
+          <div class="muted">Head: 30–50 m • Flow: ≤ 50 L/min</div>
+          <div class="price">PKR 28,000</div>
+          <div style="margin-top:8px"><a class="btn" href="#contact">Enquire</a></div>
+        </article>
+
+        <article class="product card">
+          <img src="https://images.openai.com/thumbnails/url/FjEJJ3icu1mSUVJSUGylr5-al1xUWVCSmqJbkpRnoJdeXJJYkpmsl5yfq5-Zm5ieWmxfaAuUsXL0S7F0Tw4ucKtIKQxJK82LTHUPjwzLCNEt8wvRLYoyCXCKKkgtNTNOCgkq8tM1Savwy8wJ8S83dC1MN4soC_ZOLlcrBgAzwipq" alt="Dongyin 5 Inch Multistage Pump">
+          <h4>5" Multistage Submersible Pump (SCM Series)</h4>
+          <div class="muted">Built-in float switch • Clean water</div>
+          <div class="price">PKR 35,500</div>
+          <div style="margin-top:8px"><a class="btn" href="#contact">Enquire</a></div>
+        </article>
+
+        <article class="product card">
+          <img src="https://images.openai.com/thumbnails/url/UbcIl3icu1mSUVJSUGylr5-al1xUWVCSmqJbkpRnoJdeXJJYkpmsl5yfq5-Zm5ieWmxfaAuUsXL0S7F0Tw4pjvdJDsw2LwnINPSINzYJTUnP9DE1DzUM9AkNqAwxcQnW9fEwdAo3LCoKKisoSopIDQpNyk9zK44yDFQrBgD_iClC" alt="Dongyin 3.5 Inch Deep Well Pump">
+          <h4>3.5" Deep Well Pump (SDM Series)</h4>
+          <div class="muted">Head up to 110 m • Flow: 100 L/min</div>
+          <div class="price">PKR 38,000</div>
+          <div style="margin-top:8px"><a class="btn" href="#contact">Enquire</a></div>
+        </article>
+
+        <article class="product card">
+          <img src="https://images.openai.com/thumbnails/url/fboLhXicu1mUUVJSUGylr5-al1xUWVCSmqJbkpRnoJdeXJJYkpmsl5yfq5-Zm5ieWmxfaAuUsXL0S7F0Tw7Mzsl29irLMMzLifdKLs71zC9zdYwqztL1d8t18fQN88kOcg7JKiysyEh0C8xwM7EINSwtLQ4rdvdSKwYA5cEp6Q" alt="Dongyin Submersible Sewage Pump">
+          <h4>Sewage Pump (WSD Series)</h4>
+          <div class="muted">Handles solids up to 35 mm</div>
+          <div class="price">PKR 45,000</div>
+          <div style="margin-top:8px"><a class="btn" href="#contact">Enquire</a></div>
+        </article>
+
+        <article class="product card">
+          <img src="https://via.placeholder.com/400x240?text=High+Flow+Industrial" alt="High Flow Industrial Pump">
+          <h4>High-Flow Industrial Pump (WQ Series)</h4>
+          <div class="muted">Flow up to 1200 L/min • Head 29 m</div>
+          <div class="price">PKR 72,000</div>
+          <div style="margin-top:8px"><a class="btn" href="#contact">Enquire</a></div>
+        </article>
+
+        <article class="product card">
+          <img src="https://via.placeholder.com/400x240?text=Accessories" alt="Accessories">
+          <h4>Spare Parts & Accessories</h4>
+          <div class="muted">Cables, float switches, control panels</div>
+          <div class="price">From PKR 450</div>
+          <div style="margin-top:8px"><a class="btn" href="#contact">Enquire</a></div>
+        </article>
+      </div>
+
+    </section>
+
+    <section id="about">
+      <div class="split">
+        <div>
+          <h2>About Naif Enterprise</h2>
+          <p class="muted">Naif Enterprise is a trusted importer and supplier of submersible pumps and motors. We work directly with manufacturers to offer competitive pricing and full technical support. Whether you’re a farmer, contractor, or industrial buyer, we provide solutions tailored to your needs.</p>
+
+          <div style="margin-top:18px" class="grid-2">
+            <div class="card">
+              <h4>Why choose us?</h4>
+              <ul>
+                <li>Direct imports from trusted factories</li>
+                <li>Quality-tested products & warranty</li>
+                <li>After-sales support & spare parts</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h4>Services</h4>
+              <ul>
+                <li>Site survey & pump selection</li>
+                <li>Installation & commissioning</li>
+                <li>Repair & maintenance</li>
+              </ul>
+            </div>
+          </div>
         </div>
+
+        <aside class="card">
+          <h3>Visit Our Warehouse</h3>
+          <p class="muted">Address: Industrial Area, Lahore (example). Call before visiting to ensure availability.</p>
+          <div style="margin-top:12px"><strong>Phone:</strong> +92 311 234 5678</div>
+          <div style="margin-top:6px"><strong>Email:</strong> info@naifenterprise.com</div>
+          <div style="margin-top:12px"><a class="btn" href="#contact">Request Visit</a></div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="blog" style="margin-top:28px">
+      <h2>Latest Articles</h2>
+      <div class="grid-2" style="margin-top:12px">
+        <article class="card">
+          <h4>How to choose a submersible pump</h4>
+          <p class="muted">Learn how to match pump head and flow to your well and application. (Short excerpt)</p>
+          <a href="#">Read more →</a>
+        </article>
+        <article class="card">
+          <h4>Basic pump maintenance tips</h4>
+          <p class="muted">Extend pump life with simple inspection and maintenance steps. (Short excerpt)</p>
+          <a href="#">Read more →</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" style="margin-top:28px">
+      <h2>Contact Us</h2>
+      <div class="split" style="align-items:start">
+        <div>
+          <form class="card" onsubmit="submitForm(event)">
+            <label>Name</label>
+            <input type="text" id="name" placeholder="Your name" required />
+            <label>Phone / WhatsApp</label>
+            <input type="text" id="phone" placeholder="03xx-xxxxxxx" required />
+            <label>Message</label>
+            <textarea id="message" rows="5" placeholder="Tell us what you need" required></textarea>
+            <button class="btn" type="submit">Send Message</button>
+          </form>
+        </div>
+        <aside class="card">
+          <h4 style="margin-top:0">Quick Contact</h4>
+          <p class="muted">Or reach us directly on WhatsApp for instant response.</p>
+          <div style="margin-top:10px">
+            <a class="btn" href="https://wa.me/923112345678?text=Hello%20Naif%20Enterprise">Message on WhatsApp</a>
+          </div>
+          <div style="margin-top:12px;color:var(--muted)">You can also call us at <strong>+92 311 234 5678</strong></div>
+        </aside>
       </div>
     </section>
   </main>
 
-  <!-- Store -->
-  <section id="store">
-    <div class="container">
-      <div class="section-head reveal">
-        <div>
-          <div class="kicker">Products</div>
-          <h3 class="title" style="font-size:28px">Everything you need for pumping systems</h3>
-        </div>
-        <div class="actions">
-          <button class="btn ghost" onclick="exportProducts()">Export products</button>
-          <label class="btn blue" for="import-file" style="cursor:pointer">Import products</label>
-          <input id="import-file" type="file" accept=".json,.csv" style="display:none" onchange="importProducts(this.files[0])"/>
-        </div>
-      </div>
-
-      <div id="product-grid" class="grid-4 reveal" aria-live="polite"></div>
-    </div>
-  </section>
-
-  <!-- Services -->
-  <section id="services" style="background:var(--soft)">
-    <div class="container">
-      <div class="section-head reveal">
-        <div>
-          <div class="kicker">Services</div>
-          <h3 class="title" style="font-size:28px">Wholesale, retail, and technical support</h3>
-        </div>
-        <a class="btn primary" href="#quote">Talk to sales</a>
-      </div>
-      <div class="grid-4">
-        <div class="card reveal"><div class="img">Wholesale Orders</div><div class="body"><p>Tiered pricing for dealers and contractors with fast dispatch.</p></div></div>
-        <div class="card reveal"><div class="img">Retail Sales</div><div class="body"><p>Ready stock and guidance to fit your application and budget.</p></div></div>
-        <div class="card reveal"><div class="img">Technical Support</div><div class="body"><p>Warranty handling, install partners, and troubleshooting.</p></div></div>
-        <div class="card reveal"><div class="img">Custom Import</div><div class="body"><p>Special orders and OEM sourcing tailored to your needs.</p></div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Catalog & Quote -->
-  <section id="catalog">
-    <div class="container">
-      <div class="cta-band reveal">
-        <h4>Need specs or pricing? Get the latest catalog or a personalized quote.</h4>
-        <div class="actions">
-          <a class="btn ghost" href="catalog.pdf" download>Download catalog</a>
-          <a class="btn primary" href="#quote">Request quote</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact / Quote -->
-  <section id="contact">
-    <div class="container">
-      <div class="section-head reveal">
-        <div>
-          <div class="kicker">Contact</div>
-          <h3 class="title" style="font-size:28px">Let’s get you the right pump</h3>
-        </div>
-      </div>
-
-      <div class="grid-3">
-        <div class="card reveal">
-          <div class="body">
-            <strong>Showroom</strong>
-            <p>Rawalpindi, Punjab, Pakistan</p>
-            <p><a href="tel:+923339708541">+92 333 9708541</a><br><a href="mailto:gulabafridi1985@gmail.com">gulabafridi1985@gmail.com</a></p>
-            <p class="muted">Mon–Sat 9:00–6:00</p>
-          </div>
-        </div>
-
-        <div class="card reveal" id="quote">
-          <div class="body">
-            <strong>Send quote request</strong>
-            <form onsubmit="return sendQuote(event)">
-              <div class="field"><label>Name</label><input required type="text" placeholder="Your name"/></div>
-              <div class="field"><label>Phone or WhatsApp</label><input required type="text" placeholder="+92…"/></div>
-              <div class="field"><label>Email</label><input type="text" placeholder="optional"/></div>
-              <div class="field"><label>Details</label><textarea required rows="4" placeholder="Product, quantity, delivery city"></textarea></div>
-              <div class="actions">
-                <button class="btn primary" type="submit">Send request</button>
-                <a class="btn blue" target="_blank" rel="noopener" href="https://wa.me/923339708541?text=Hello%20Naif%20Enterprise%2C%20I%27d%20like%20a%20quote.">WhatsApp now</a>
-              </div>
-              <p id="form-msg" class="muted" style="display:none;margin-top:6px;color:#0a7f3f!important">Thanks! We’ll contact you shortly.</p>
-            </form>
-          </div>
-        </div>
-
-        <div class="card reveal">
-          <div class="body">
-            <strong>Helpful links</strong>
-            <p><a href="#brands">Brand list</a></p>
-            <p><a href="#store">Product categories</a></p>
-            <p><a href="#services">Service options</a></p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Admin: Manage Products -->
-  <section id="admin">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <div class="kicker">Product manager</div>
-          <h3 class="title" style="font-size:28px">Add, import, and manage products</h3>
-          <p class="muted" style="margin-top:6px">Products are saved in your browser (local). Export JSON to move to another device or host.</p>
-        </div>
-      </div>
-
-      <div class="admin-grid">
-        <div class="panel">
-          <h4>Add a product</h4>
-          <div class="field"><label>Product name</label><input id="p-name" type="text" placeholder="e.g., 4&quot; Submersible Pump" /></div>
-          <div class="field"><label>Price</label><input id="p-price" type="number" min="0" step="0.01" placeholder="e.g., 26500"/></div>
-          <div class="field"><label>Category</label>
-            <select id="p-category">
-              <option>Submersible Pumps</option>
-              <option>Motors</option>
-              <option>Control Panels</option>
-              <option>Surface Pumps</option>
-              <option>Sewage Pumps</option>
-              <option>Agricultural Systems</option>
-              <option>Spare Parts</option>
-            </select>
-          </div>
-          <div class="field"><label>Description</label><textarea id="p-desc" rows="3" placeholder="Key specs or notes"></textarea></div>
-          <div class="field"><label>Image</label><input id="p-image" type="file" accept="image/*"/></div>
-          <div class="actions">
-            <button class="btn primary" onclick="addProduct()">Add product</button>
-            <button class="btn ghost" onclick="clearForm()">Clear form</button>
-          </div>
-        </div>
-
-        <div class="panel">
-          <h4>Import/Export</h4>
-          <p class="muted">Import a .json or .csv file with columns: name,price,category,description,image (URL optional).</p>
-          <div class="actions" style="margin:8px 0">
-            <label class="btn blue" for="import-file-2" style="cursor:pointer">Import file</label>
-            <input id="import-file-2" type="file" accept=".json,.csv" style="display:none" onchange="importProducts(this.files[0])"/>
-            <button class="btn ghost" onclick="exportProducts()">Export JSON</button>
-            <button class="btn ghost" onclick="seedDemo()">Load demo items</button>
-            <button class="btn ghost" onclick="clearAllProducts()">Clear all</button>
-          </div>
-          <details style="margin-top:8px">
-            <summary>CSV example</summary>
-            <pre style="white-space:pre-wrap;background:#f8fafc;border:1px solid #e7eef8;border-radius:8px;padding:10px;font-size:12px">name,price,category,description,image
-"4 inch Submersible Pump",26500,"Submersible Pumps","Stainless steel, multi-stage","https://via.placeholder.com/600x400.png?text=Pump"
-"0.75HP Motor",18500,"Motors","Copper windings, water-filled","https://via.placeholder.com/600x400.png?text=Motor"</pre>
-          </details>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
   <footer>
-    <div class="container footer-grid">
-      <div>
-        <h5>About Naif Enterprise</h5>
-        <p>We specialize in pumps and motor solutions, offering wholesale and retail supply, technical support, and custom import services. Our mission is to deliver reliable products at unbeatable prices.</p>
-      </div>
-      <div>
-        <h5>Products</h5>
-        <ul>
-          <li>Submersible Pumps</li>
-          <li>Sewage Pumps</li>
-          <li>Industrial Motors</li>
-          <li>Agricultural Systems</li>
-        </ul>
-      </div>
-      <div>
-        <h5>Brands</h5>
-        <ul>
-          <li>Dongyin</li>
-          <li>Hydro Pro</li>
-          <li>Custom Solutions</li>
-          <li>OEM Products</li>
-        </ul>
-        <h5 style="margin-top:14px">Services</h5>
-        <ul>
-          <li>Wholesale Orders</li>
-          <li>Retail Sales</li>
-          <li>Technical Support</li>
-          <li>Custom Import</li>
-        </ul>
-      </div>
-    </div>
-    <div class="container copy">
-      <p>📞 <a href="tel:+923339708541" style="color:#91a0b4">+92 333 9708541</a> |
-         ✉️ <a href="mailto:gulabafridi1985@gmail.com" style="color:#91a0b4">gulabafridi1985@gmail.com</a></p>
-      <p>© <span id="year"></span> Naif Enterprise. All rights reserved.</p>
-    </div>
-  </footer>
-
-  <!-- Sticky quick actions -->
-  <div class="sticky" aria-label="Quick contact">
-    <a class="fab" href="tel:+923339708541" title="Call us">📞</a>
-    <a class="fab primary" href="https://wa.me/923339708541" target="_blank" rel="noopener" title="WhatsApp">🟢</a>
-  </div>
-
-  <script>
-    // Basic nav toggle
-    function toggleNav(){ document.getElementById('nav').classList.toggle('open'); }
-
-    // Year
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Quote form (demo only)
-    function sendQuote(e){
-      e.preventDefault();
-      document.getElementById('form-msg').style.display='block';
-      setTimeout(()=>{document.getElementById('form-msg').style.display='none'}, 4000);
-      e.target.reset();
-      return false;
-    }
-
-    // Scroll reveal
-    const io = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
-    },{threshold:.12});
-    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-
-    // Product storage helpers
-    const KEY='naif_products_v1';
-
-    function getProducts(){
-      try{ return JSON.parse(localStorage.getItem(KEY)) || []; }catch(e){ return []; }
-    }
-    function setProducts(arr){
-      localStorage.setItem(KEY, JSON.stringify(arr));
-      renderProducts();
-    }
-
-    // Render product cards to grid
-    function renderProducts(){
-      const grid = document.getElementById('product-grid');
-      const items = getProducts();
-      if(!items.length){
-        grid.innerHTML = `
-          <div class="card"><div class="img">Submersible Pumps</div><div class="body"><strong>Deep‑well series</strong><p class="muted">4"–8" multi‑stage pumps.</p></div></div>
-          <div class="card"><div class="img">Motors</div><div class="body"><strong>Oil & water‑filled</strong><p class="muted">High‑efficiency motors.</p></div></div>
-          <div class="card"><div class="img">Control Panels</div><div class="body"><strong>Auto & manual</strong><p class="muted">Overload & dry‑run safety.</p></div></div>
-          <div class="card"><div class="img">Sewage Pumps</div><div class="body"><strong>Waste water</strong><p class="muted">Drainage & dewatering.</p></div></div>`;
-        return;
-      }
-      grid.innerHTML = items.map((p,idx)=>`
-        <div class="card reveal" style="overflow:hidden">
-          <div class="img" style="padding:0">
-            ${p.image ? `<img alt="${escapeHtml(p.name||'Product')}" src="${p.image}" style="width:100%;height:170px;object-fit:cover">` : 'Product'}
-          </div>
-          <div class="body">
-            <div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
-              <strong>${escapeHtml(p.name||'Unnamed')}</strong>
-              ${p.price?`<span class="pill">PKR ${formatPrice(p.price)}</span>`:''}
-            </div>
-            ${p.category?`<p class="muted" style="margin:6px 0 0">${escapeHtml(p.category)}</p>`:''}
-            ${p.description?`<p style="margin:6px 0 0">${escapeHtml(p.description)}</p>`:''}
-            <div class="actions" style="margin-top:10px">
-              <a class="btn ghost" href="#quote">Get quote</a>
-              <button class="btn ghost" onclick="removeProduct(${idx})" title="Remove">Delete</button>
-            </div>
-          </div>
-        </div>
-      `).join('');
-      // re-apply reveal to new cards
-      document.querySelectorAll('#product-grid .reveal').forEach(el=>io.observe(el));
-    }
-
-    function formatPrice(v){
-      try{
-        const n = Number(v);
-        return n.toLocaleString('en-PK', {maximumFractionDigits:0});
-      }catch(_){ return v }
-    }
-
-    function escapeHtml(s){
-      return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
-    }
-
-    // Add product from form
-    function addProduct(){
-      const name = document.getElementById('p-name').value.trim();
-      const price = document.getElementById('p-price').value.trim();
-      const category = document.getElementById('p-category').value;
-      const description = document.getElementById('p-desc').value.trim();
-      const file = document.getElementById('p-image').files[0];
-
-      if(!name){ alert('Please enter a product name'); return; }
-
-      const save = (image)=> {
-        const items = getProducts();
-        items.unshift({name,price,category,description,image});
-        setProducts(items);
-        clearForm();
-        window.location.hash = '#store';
-        window.scrollTo({top:document.getElementById('store').offsetTop-60,behavior:'smooth'});
-      };
-
-      if(file){
-        const reader = new FileReader();
-        reader.onload = e => save(e.target.result);
-        reader.readAsDataURL(file);
-      }else{
-        save('');
-      }
-    }
-
-    function clearForm(){
-      ['p-name','p-price','p-desc','p-image'].forEach(id=>{
-        const el=document.getElementById(id);
-        if(!el) return;
-        if(el.type==='file') el.value='';
-        else el.value='';
-      });
-      document.getElementById('p-category').selectedIndex = 0;
-    }
-
-    function removeProduct(index){
-      if(!confirm('Remove this product?')) return;
-      const items = getProducts();
-      items.splice(index,1);
-      setProducts(items);
-    }
-
-    function clearAllProducts(){
-      if(!confirm('Clear ALL products?')) return;
-      setProducts([]);
-    }
-
-    // Export / Import
-    function exportProducts(){
-      const data = getProducts();
-      const blob = new Blob([JSON.stringify(data,null,2)], {type:'application/json'});
-      const url = URL.createObjectURL(blob);
-      const a = Object.assign(document.createElement('a'), {href:url, download:'naif-products.json'});
-      document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
-    }
-
-    async function importProducts(file){
-      if(!file) return;
-      const text = await file.text();
-      let list=[];
-      try{
-        if(file.name.toLowerCase().endsWith('.json')){
-          list = JSON.parse(text);
-        }else{
-          list = parseCSV(text);
-        }
-      }catch(e){ alert('Could not parse file. Make sure it is valid JSON or CSV.'); return; }
-      if(!Array.isArray(list)) { alert('Invalid data'); return; }
-      // Normalize
-      const normalized = list.map(p=>({
-        name: p.name || p.title || 'Product',
-        price: p.price || '',
-        category: p.category || '',
-        description: p.description || p.desc || '',
-        image: p.image || p.img || ''
-      }));
-      const current = getProducts();
-      setProducts([...normalized, ...current]);
-      window.location.hash = '#store';
-    }
-
-    function parseCSV(text){
-      const rows = text.split(/\r?\n/).filter(r=>r.trim().length);
-      if(!rows.length) return [];
-      const headers = rows[0].split(',').map(h=>h.trim().replace(/^"|"$/g,''));
-      return rows.slice(1).map(line=>{
-        const cols = splitCsvLine(line);
-        const obj={};
-        headers.forEach((h,i)=> obj[h]= (cols[i]||'').replace(/^"|"$/g,''));
-        return obj;
-      });
-    }
-    function splitCsvLine(line){
-      const out=[]; let cur=''; let q=false;
-      for(let i=0;i<line.length;i++){
-        const c=line[i];
-        if(c==='"' ){ q=!q; continue; }
-        if(c===',' && !q){ out.push(cur); cur=''; continue; }
-        cur+=c;
-      }
-      out.push(cur);
-      return out;
-    }
-
-    // Demo products (optional)
-    function seedDemo(){
-      const demo = [
-        {name:'4" Submersible Pump', price:26500, category:'Submersible Pumps', description:'Stainless steel, multi‑stage', image:'https://images.unsplash.com/photo-1562158070-974d1cb3bd39?q=80&w=1200&auto=format&fit=crop'},
-        {name:'0.75HP Motor', price:18500, category:'Motors', description:'Copper windings, water‑filled', image:'https://images.unsplash.com/photo-1608222351212-18fe0ec7b13f?q=80&w=1200&auto=format&fit=crop'},
-        {name:'Control Panel', price:14500, category:'Control Panels', description:'Overload & dry‑run protection', image:'https://images.unsplash.com/photo-1581091014534-5c76a1a94037?q=80&w=1200&auto=format&fit=crop'}
-      ];
-      const items = getProducts();
-      setProducts([...demo, ...items]);
-      window.location.hash = '#store';
-    }
-
-    // Initial render
-    renderProducts();
-  </script>
-</body>
-</html>
-<!-- ... everything from the previous HTML stays the same until just before the #admin section ... -->
-
-<!-- Admin Login -->
-<section id="admin-login" style="padding:60px 0; background:#f6f9ff; text-align:center;">
-  <div class="container">
-    <h3 class="title" style="font-size:28px">Admin Login</h3>
-    <p class="muted">Enter password to manage products</p>
-    <input id="admin-pass" type="password" placeholder="Password" 
-           style="padding:12px; border:1px solid #dbe3f0; border-radius:10px; font-size:16px; margin-top:10px;">
-    <br><br>
-    <button class="btn primary" onclick="checkAdminPassword()">Login</button>
-    <p id="login-msg" style="color:red; display:none; margin-top:10px;">Incorrect password</p>
-  </div>
-</section>
-
-<!-- Admin: Manage Products -->
-<section id="admin" style="display:none;">
-  <div class="container">
-    <div class="section-head">
-      <div>
-        <div class="kicker">Product manager</div>
-        <h3 class="title" style="font-size:28px">Add, import, and manage products</h3>
-        <p class="muted" style="margin-top:6px">Products are saved in your browser (local). Export JSON to move to another device or host.</p>
-      </div>
-    </div>
-
-    <div class="admin-grid">
-      <div class="panel">
-        <h4>Add a product</h4>
-        <div class="field"><label>Product name</label><input id="p-name" type="text" placeholder="e.g., 4&quot; Submersible Pump" /></div>
-        <div class="field"><label>Price</label><input id="p-price" type="number" min="0" step="0.01" placeholder="e.g., 26500"/></div>
-        <div class="field"><label>Category</label>
-          <select id="p-category">
-            <option>Submersible Pumps</option>
-            <option>Motors</option>
-            <option>Control Panels</option>
-            <option>Surface Pumps</option>
-            <option>Sewage Pumps</option>
-            <option>Agricultural Systems</option>
-            <option>Spare Parts</option>
-          </select>
-        </div>
-        <div class="field"><label>Description</label><textarea id="p-desc" rows="3" placeholder="Key specs or notes"></textarea></div>
-        <div class="field"><label>Image</label><input id="p-image" type="file" accept="image/*"/></div>
-        <div class="actions">
-          <button class="btn primary" onclick="addProduct()">Add product</button>
-          <button class="btn ghost" onclick="clearForm()">Clear form</button>
-        </div>
-      </div>
-
-      <div class="panel">
-        <h4>Import/Export</h4>
-        <p class="muted">Import a .json or .csv file with columns: name,price,category,description,image (URL optional).</p>
-        <div class="actions" style="margin:8px 0">
-          <label class="btn blue" for="import-file-2" style="cursor:pointer">Import file</label>
-          <input id="import-file-2" type="file" accept=".json,.csv" style="display:none" onchange="importProducts(this.files[0])"/>
-          <button class="btn ghost" onclick="exportProducts()">Export JSON</button>
-          <button class="btn ghost" onclick="seedDemo()">Load demo items</button>
-          <button class="btn ghost" onclick="clearAllProducts()">Clear all</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
+    <div class="container">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap">
+        <div>
+          <div style="font-weight:700">Naif Enterprise</div>
+          <div style="font-size:13px;color:var(--muted)">© "Naif Enterprise" — All rights reserved</div
