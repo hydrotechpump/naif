@@ -1,660 +1,718 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#0ea5e9" />
-  <meta name="description" content="Modern premium landing page template with product grid, services, reviews, blog, FAQ and contact form. Fast, responsive, SEO-ready." />
-  <title>Toolstrend — Premium Tools & Hardware</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Naif Enterprise — Professional Submersible Pumps & Motors</title>
+  <meta name="description" content="Naif Enterprise: Direct importer of submersible pumps & motors. Wholesale & retail. Premium brands. Unbeatable prices."/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
   <style>
     :root{
-      --bg:#0b1020;         /* Deep navy */
-      --panel:#0f172a;      /* Slate */
-      --soft:#111827;       /* Gray-900 */
-      --muted:#94a3b8;      /* Slate-400 */
-      --text:#e5e7eb;       /* Gray-200 */
-      --primary:#0ea5e9;    /* Sky-500 */
-      --primary-600:#0284c7;/* Sky-600 */
-      --accent:#22c55e;     /* Green-500 */
-      --warn:#f59e0b;       /* Amber-500 */
-      --danger:#ef4444;     /* Red-500 */
-      --ring: 0 0 0 3px rgba(14,165,233,.35);
-      --radius: 16px;
-      --shadow: 0 10px 30px rgba(2,8,23,.35);
+      --blue:#1166ff;
+      --blue-2:#0052cc;
+      --orange:#ff7a18;
+      --orange-2:#ff9a3c;
+      --ink:#0f172a;
+      --muted:#64748b;
+      --soft:#f6f9ff;
+      --bg:#ffffff;
+      --ring: rgba(17,102,255,.25);
+      --radius:14px;
+      --shadow:0 14px 40px rgba(16,34,87,.12);
+      --shadow-sm:0 10px 24px rgba(16,34,87,.10);
     }
-    *{box-sizing: border-box}
-    html,body{margin:0}
-    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial,sans-serif; background:linear-gradient(180deg,var(--bg),#0a122a 60%, #0b1a38); color:var(--text); line-height:1.55}
-    img{max-width:100%; display:block}
-    a{color:inherit; text-decoration:none}
-    .container{width:min(1200px,92%); margin-inline:auto}
-    .flex{display:flex}
-    .grid{display:grid}
-    .btn{display:inline-flex; align-items:center; gap:.6rem; padding:.9rem 1.1rem; border-radius:999px; background:var(--primary); color:#061424; font-weight:700; box-shadow:var(--shadow); transition:.2s transform,.2s filter}
-    .btn:hover{transform:translateY(-1px)}
-    .btn.secondary{background:#0b1a38; color:var(--text); border:1px solid #1f2a44}
-    .chip{display:inline-flex; align-items:center; gap:.4rem; padding:.35rem .7rem; border:1px solid #20304d; border-radius:999px; color:#93c5fd; background:rgba(14,165,233,.08)}
-    .card{background:linear-gradient(180deg,#0b142b,#0c1732 70%); border:1px solid #1d2a4d; border-radius:var(--radius); box-shadow:var(--shadow)}
-    .glass{backdrop-filter: blur(8px); background:linear-gradient(180deg, rgba(13,25,52,.8), rgba(10,18,40,.6)); border:1px solid rgba(148,163,184,.15)}
-    .shadow{box-shadow:var(--shadow)}
-    .section{padding:80px 0}
-    .sub{color:var(--muted); font-weight:600; letter-spacing:.1em; text-transform:uppercase}
-    h1{font-size:clamp(2.2rem,5vw,3.6rem); line-height:1.12; margin:.4rem 0 1rem}
-    h2{font-size:clamp(1.6rem,3.5vw,2.4rem); line-height:1.2; margin:.2rem 0 1rem}
-    h3{font-size:1.15rem; margin:.2rem 0 .6rem}
-    p{color:#cbd5e1}
+    *{box-sizing:border-box}
+    html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;line-height:1.5}
+    img{max-width:100%;display:block}
+    a{color:inherit;text-decoration:none}
+    .container{width:min(1200px,92%);margin:0 auto}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:13px 18px;border-radius:12px;border:1px solid transparent;font-weight:700;cursor:pointer;transition:.2s ease;box-shadow:var(--shadow-sm)}
+    .btn.primary{background:linear-gradient(135deg,var(--orange),var(--orange-2));color:#fff}
+    .btn.primary:hover{transform:translateY(-1px);filter:saturate(1.1)}
+    .btn.blue{background:linear-gradient(135deg,var(--blue),var(--blue-2));color:#fff}
+    .btn.ghost{background:#fff;border-color:#dbe3f0;color:#0b295f}
+    .tag{display:inline-block;background:#fff;border:1px solid #e2e8f0;color:#0b295f;padding:6px 10px;border-radius:999px;font-weight:700;font-size:12px}
+    .kicker{color:var(--blue);font-weight:800;letter-spacing:.3px;margin-bottom:8px}
+    .title{font-size:40px;line-height:1.1;margin:8px 0 12px}
     .muted{color:var(--muted)}
-    .badge{display:inline-flex; gap:.5rem; align-items:center; background:#081630; color:#93c5fd; border:1px solid #1b2b4a; padding:.45rem .7rem; border-radius:999px}
+    .shadow{box-shadow:var(--shadow)}
+
+    /* Topbar */
+    .topbar{background:var(--soft);border-bottom:1px solid #eef2f7;font-size:14px}
+    .topbar .wrap{display:flex;align-items:center;justify-content:space-between;padding:8px 0}
+    .contact-links{display:flex;align-items:center;gap:16px;color:var(--muted)}
+    .badge{background:linear-gradient(135deg,var(--blue),var(--blue-2));color:#fff;padding:4px 10px;border-radius:999px;font-weight:800;font-size:12px}
 
     /* Header */
-    header{position:sticky; top:0; z-index:50; backdrop-filter: blur(10px)}
-    .nav{display:flex; align-items:center; justify-content:space-between; padding:.8rem 0}
-    .nav .logo{display:flex; align-items:center; gap:.7rem; font-weight:800}
-    .logo svg{width:28px; height:28px}
-    .nav a{color:#dbeafe}
-    .nav ul{display:flex; gap:1.1rem; align-items:center}
-    .nav .cta{margin-left:6px}
-    .mobile-toggle{display:none; background:#0b1a38; border:1px solid #1f2a44; border-radius:10px; padding:.55rem}
+    header{position:sticky;top:0;z-index:40;background:#fff;border-bottom:1px solid #eef2f7;backdrop-filter:saturate(140%) blur(4px)}
+    .nav{height:68px;display:flex;align-items:center;justify-content:space-between}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:36px;height:36px;border-radius:8px;background:
+      conic-gradient(from 140deg,var(--orange),var(--orange-2),var(--blue),var(--blue-2),var(--orange));box-shadow:inset 0 0 0 2px rgba(255,255,255,.6)}
+    .brand h1{font-size:18px;margin:0}
+    nav ul{display:flex;gap:24px;list-style:none;margin:0;padding:0}
+    nav a{font-weight:700;color:#183055}
+    nav a:hover{color:var(--blue)}
+    .nav-cta{display:flex;gap:10px;align-items:center}
+    .burger{display:none;border:0;background:transparent;font-size:26px}
 
-    /* Hero */
-    .hero{position:relative; padding:110px 0 80px; overflow:hidden}
-    .hero .grid{grid-template-columns:1.15fr .95fr; gap:40px}
-    .hero .eyebrow{display:inline-grid; grid-auto-flow:column; align-items:center; gap:.6rem}
-    .hero .stats{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:18px; margin-top:34px}
-    .stat{padding:16px; border-radius:14px; background:linear-gradient(180deg,#0b1a38, #0b142b); border:1px solid #1e2b4a}
-    .stat strong{font-size:1.4rem}
-    .hero-visual{position:relative}
-    .orb{position:absolute; inset:auto auto 10% -10%; width:280px; height:280px; background:radial-gradient(circle at 30% 30%, rgba(14,165,233,.6), transparent 60%), radial-gradient(circle at 70% 70%, rgba(34,197,94,.5), transparent 60%); filter: blur(40px); opacity:.55; pointer-events:none}
-    .hero-image{aspect-ratio: 4/3; border-radius:18px; border:1px solid #1a2747; background:linear-gradient(135deg,#0f1d3c,#0b1734); display:grid; place-items:center; overflow:hidden}
-    .hero-image svg{width:80%; max-width:520px; opacity:.95}
+    /* Hero with animated gradient */
+    .hero{position:relative;isolation:isolate;padding:72px 0;background:
+      radial-gradient(900px 500px at 85% -10%, rgba(17,102,255,.18), transparent 60%),
+      radial-gradient(900px 500px at -10% 20%, rgba(255,122,24,.18), transparent 60%)}
+    .hero::before{
+      content:"";position:absolute;inset:-20% -10% -10% -10%;z-index:-1;
+      background:linear-gradient(135deg,rgba(17,102,255,.22),rgba(255,122,24,.22));
+      filter:blur(60px);animation:floater 10s ease-in-out infinite alternate
+    }
+    @keyframes floater{to{transform:translateY(20px) translateX(10px)}}
+    .hero-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center}
+    .hero p{font-size:18px;color:#435168;margin:0 0 18px}
+    .hero-card{background:#fff;border:1px solid #e7eef8;border-radius:var(--radius);padding:18px}
+    .hero-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:8px}
+    .hero-list li{list-style:none;display:flex;gap:10px;align-items:center;background:#fff;border:1px solid #e7eef8;padding:10px;border-radius:12px;font-weight:700;color:#334155}
+    .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
 
-    /* Feature grid */
-    .feature-grid{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:18px}
-    .feature{padding:20px}
-    .feature .icon{width:42px; height:42px; display:grid; place-items:center; border-radius:12px; background:#0b1a38; border:1px solid #20304d; margin-bottom:10px}
+    /* Brands marquee */
+    .brands{padding:18px 0;border-top:1px solid #eef2f7;border-bottom:1px solid #eef2f7;background:#fff}
+    .marquee{overflow:hidden;white-space:nowrap}
+    .marquee .track{display:inline-block;animation:scroll 20s linear infinite}
+    .marquee span{display:inline-block;margin:0 18px;padding:8px 14px;border:1px dashed #d7e3f7;border-radius:999px;font-weight:800;color:#183055;background:#fff}
+    @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-    /* Product grid */
-    .product-grid{display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:18px}
-    .product{overflow:hidden}
-    .product .thumb{aspect-ratio: 1/1; background:linear-gradient(135deg,#0e1a36,#0b1732); border-bottom:1px solid #1b274b; display:grid; place-items:center}
-    .price{display:flex; align-items:center; gap:.5rem}
-    .price .strike{text-decoration:line-through; color:#94a3b8}
+    /* Sections & cards */
+    section{padding:60px 0}
+    .section-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:18px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .card{background:#fff;border:1px solid #e7eef8;border-radius:14px;overflow:hidden;transition:transform .25s ease, box-shadow .25s ease}
+    .card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+    .card .img{height:170px;background:linear-gradient(135deg,#eef7ff,#fff8f1);display:flex;align-items:center;justify-content:center;color:#0f3f9e;font-weight:800;text-align:center;padding:10px}
+    .card .body{padding:16px}
+    .pill{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;padding:6px 10px;border-radius:999px;color:#fff;background:linear-gradient(135deg,var(--blue),var(--blue-2))}
+    .pill.orange{background:linear-gradient(135deg,var(--orange),var(--orange-2))}
 
-    /* Testimonials */
-    .carousel{position:relative}
-    .carousel-track{display:flex; gap:18px; overflow:auto; scroll-snap-type:x mandatory; padding-bottom:6px}
-    .carousel .item{flex:0 0 360px; scroll-snap-align:start}
-
-    /* Blog */
-    .blog-grid{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:18px}
-    .post .thumb{aspect-ratio: 16/9; background:linear-gradient(135deg,#0e1a36,#0b1732); border-bottom:1px solid #1b274b}
-
-    /* CTA Banner */
-    .cta-banner{display:grid; grid-template-columns:1.3fr .7fr; gap:28px; align-items:center}
+    /* CTA band */
+    .cta-band{background:linear-gradient(135deg,var(--blue),var(--orange));color:#fff;border-radius:16px;padding:26px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .cta-band h4{margin:0;font-size:22px}
 
     /* Footer */
-    footer{border-top:1px solid #1b274b; margin-top:60px; padding:40px 0 80px}
-    .footer-grid{display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:24px}
+    footer{background:#0a1529;color:#c7d2e1;padding-top:40px;margin-top:20px}
+    .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:28px}
+    footer h5{color:#fff;margin:0 0 10px}
+    footer ul{list-style:none;margin:0;padding:0}
+    footer ul li{margin-bottom:6px}
+    .copy{border-top:1px solid #1f2a3d;margin-top:20px;padding:12px 0;color:#91a0b4;font-size:14px;text-align:center}
 
-    /* Chips row */
-    .chips{display:flex; flex-wrap:wrap; gap:10px}
+    /* Sticky quick actions */
+    .sticky{position:fixed;right:18px;bottom:18px;display:flex;flex-direction:column;gap:10px;z-index:50}
+    .fab{border-radius:999px;padding:12px 14px;background:#fff;border:1px solid #dbe3f0;box-shadow:var(--shadow);transition:.2s}
+    .fab:hover{transform:translateY(-2px)}
+    .fab.primary{background:linear-gradient(135deg,var(--blue),var(--blue-2));color:#fff;border-color:transparent}
+
+    /* Admin (product upload) */
+    #admin{background:var(--soft);border-top:1px solid #eef2f7}
+    .admin-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:18px}
+    .panel{background:#fff;border:1px solid #e7eef8;border-radius:14px;padding:16px}
+    .panel h4{margin:0 0 10px}
+    .field{display:grid;gap:6px;margin-bottom:10px}
+    input[type="text"],input[type="number"],input[type="file"],textarea,select{
+      padding:12px;border:1px solid #dbe3f0;border-radius:10px;font:inherit
+    }
+    .actions{display:flex;gap:10px;flex-wrap:wrap}
+
+    /* Reveal on scroll */
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease, transform .6s ease}
+    .reveal.in{opacity:1;transform:none}
 
     /* Responsive */
-    @media (max-width: 1024px){
-      .hero .grid, .cta-banner{grid-template-columns:1fr}
-      .product-grid{grid-template-columns:repeat(3, minmax(0,1fr))}
-      .blog-grid{grid-template-columns:repeat(2, minmax(0,1fr))}
-      .feature-grid{grid-template-columns:repeat(2, minmax(0,1fr))}
+    @media (max-width: 980px){
+      .hero-grid{grid-template-columns:1fr}
+      .grid-3{grid-template-columns:1fr 1fr}
+      .grid-4{grid-template-columns:1fr 1fr}
       .footer-grid{grid-template-columns:1fr 1fr}
+      nav ul{display:none}
+      .burger{display:block}
+      .nav.open ul{display:flex;position:absolute;top:68px;left:0;right:0;background:#fff;flex-direction:column;gap:0;border-bottom:1px solid #eef2f7}
+      .nav.open ul li a{display:block;padding:14px 24px;border-top:1px solid #f2f5fb}
+      .admin-grid{grid-template-columns:1fr}
     }
-    @media (max-width: 720px){
-      .nav ul{display:none}
-      .mobile-toggle{display:inline-flex}
-      .product-grid{grid-template-columns:repeat(2, minmax(0,1fr))}
-      .blog-grid{grid-template-columns:1fr}
-      .feature-grid{grid-template-columns:1fr}
-      .footer-grid{grid-template-columns:1fr}
-      .section{padding:64px 0}
+    @media (max-width: 640px){
+      .grid-3,.grid-4{grid-template-columns:1fr}
+      .title{font-size:34px}
+      .cta-band{flex-direction:column;align-items:stretch}
     }
-    /* Utility */
-    .mt-1{margin-top:.25rem} .mt-2{margin-top:.5rem} .mt-3{margin-top:1rem} .mt-4{margin-top:1.5rem} .mt-5{margin-top:2rem}
-    .mb-0{margin-bottom:0} .mb-1{margin-bottom:.25rem} .mb-2{margin-bottom:.5rem} .mb-3{margin-bottom:1rem} .mb-4{margin-bottom:1.5rem} .mb-5{margin-bottom:2rem}
-    .row{display:flex; gap:10px; flex-wrap:wrap}
-    .center{place-items:center}
-    .right{justify-content:flex-end}
-    .w-full{width:100%}
-    .sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border-width:0}
-    .divider{height:1px; background:linear-gradient(90deg,transparent,#1b274b,transparent)}
-    .list-reset{padding-left:0; list-style:none}
-
-    /* Forms */
-    input, textarea{width:100%; padding:12px 14px; border-radius:12px; border:1px solid #1f2a44; background:#0b1a38; color:var(--text)}
-    input:focus, textarea:focus{outline:none; box-shadow:var(--ring); border-color:#2b9cdb}
-    label{font-size:.9rem; color:#cbd5e1}
-    .input-group{display:grid; gap:8px}
+    :focus{outline:3px solid var(--ring);outline-offset:2px}
   </style>
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Toolstrend",
-    "url": "https://example.com",
-    "logo": "https://example.com/logo.png",
-    "sameAs": ["https://www.facebook.com/","https://www.instagram.com/","https://www.linkedin.com/"]
+    "@type": "LocalBusiness",
+    "name": "Naif Enterprise",
+    "description": "Wholesale and retail supplier of submersible pumps and motors.",
+    "address": {"@type":"PostalAddress","addressLocality":"Rawalpindi","addressRegion":"Punjab","addressCountry":"PK"},
+    "telephone": "+923339708541",
+    "email": "gulabafridi1985@gmail.com",
+    "url": "https://naifenterprise.pk",
+    "areaServed": "Pakistan"
   }
   </script>
 </head>
 <body>
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="container wrap">
+      <div class="contact-links">
+        <a href="tel:+923339708541">📞 +92 333 9708541</a>
+        <a href="mailto:gulabafridi1985@gmail.com">✉️ gulabafridi1985@gmail.com</a>
+        <span>⏰ Mon–Sat 9:00–6:00</span>
+      </div>
+      <span class="badge">Wholesale & Retail</span>
+    </div>
+  </div>
+
   <!-- Header -->
-  <header class="glass">
-    <div class="container nav">
-      <a href="#home" class="logo" aria-label="Toolstrend Home">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
-          <path d="M6 21h12M9 21V8a3 3 0 0 1 6 0v13"/>
-          <path d="M3 10h18M12 3v3"/>
-        </svg>
-        <span>Toolstrend</span>
-      </a>
-      <nav aria-label="Primary">
-        <ul class="list-reset">
-          <li><a href="#features">Features</a></li>
-          <li><a href="#categories">Categories</a></li>
-          <li><a href="#products">Products</a></li>
-          <li><a href="#reviews">Reviews</a></li>
-          <li><a href="#blog">Blog</a></li>
+  <header>
+    <div class="container nav" id="nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <h1>Naif Enterprise</h1>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#store">Store</a></li>
+          <li><a href="#brands">Brands</a></li>
+          <li><a href="#services">Services</a></li>
           <li><a href="#contact">Contact</a></li>
+          <li><a href="#admin">Manage Products</a></li>
         </ul>
       </nav>
-      <div class="row right">
-        <a class="btn secondary cta" href="#products">Shop Now</a>
-        <button class="mobile-toggle" aria-label="Open menu" id="mobileToggle">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
-        </button>
-      </div>
-    </div>
-    <!-- Mobile menu -->
-    <div id="mobileMenu" class="container" hidden>
-      <div class="card" style="padding:12px; margin-bottom:8px">
-        <a class="btn w-full" style="justify-content:center" href="#products">Shop Now</a>
-      </div>
-      <div class="card" style="padding:12px">
-        <ul class="list-reset" style="display:grid; gap:8px">
-          <li><a href="#features">Features</a></li>
-          <li><a href="#categories">Categories</a></li>
-          <li><a href="#products">Products</a></li>
-          <li><a href="#reviews">Reviews</a></li>
-          <li><a href="#blog">Blog</a></li>
-          <li><a href="#faq">FAQ</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
+      <div class="nav-cta">
+        <a class="btn ghost" href="mailto:gulabafridi1985@gmail.com">Email us</a>
+        <a class="btn blue" href="https://wa.me/923339708541" target="_blank" rel="noopener">WhatsApp</a>
+        <button class="burger" aria-label="Toggle menu" onclick="toggleNav()">☰</button>
       </div>
     </div>
   </header>
 
   <!-- Hero -->
-  <section id="home" class="hero">
-    <div class="container grid">
-      <div>
-        <div class="eyebrow">
-          <span class="chip">Trusted by 25k+ DIYers</span>
-          <span class="chip">Free US Shipping $50+</span>
-        </div>
-        <h1>Premium Tools & Hardware for Pros and Home Projects</h1>
-        <p class="mt-3">From submersible pumps to power tools, get industrial-grade performance with transparent pricing, expert support, and fast shipping across the United States.</p>
-        <div class="row mt-4">
-          <a href="#products" class="btn" aria-label="Browse Products">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18l-2 13H5L3 3Z"/><path d="M16 8H8"/><circle cx="9" cy="20" r="1"/><circle cx="15" cy="20" r="1"/></svg>
-            Shop Bestsellers
-          </a>
-          <a href="#features" class="btn secondary" aria-label="See features">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
-            Why Choose Us
-          </a>
-        </div>
-        <div class="stats">
-          <div class="stat card"><strong>4.9★</strong><div class="muted">Average rating</div></div>
-          <div class="stat card"><strong>72h</strong><div class="muted">Delivery time</div></div>
-          <div class="stat card"><strong>10yr</strong><div class="muted">Warranty plans</div></div>
-        </div>
-      </div>
-      <div class="hero-visual">
-        <div class="hero-image card">
-          <!-- Placeholder product illustration -->
-          <svg viewBox="0 0 600 450" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Hero illustration">
-            <defs>
-              <linearGradient id="g1" x1="0" x2="1">
-                <stop offset="0" stop-color="#0ea5e9" stop-opacity=".25"/>
-                <stop offset="1" stop-color="#22c55e" stop-opacity=".25"/>
-              </linearGradient>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#g1)"/>
-            <g fill="none" stroke="#7dd3fc" stroke-opacity=".6" stroke-width="2">
-              <rect x="70" y="160" rx="14" width="220" height="130"/>
-              <path d="M290 225h240"/>
-              <path d="M290 205h160" stroke="#86efac"/>
-              <path d="M290 245h190" stroke="#fca5a5"/>
-              <circle cx="150" cy="225" r="30"/>
-              <path d="M110 110h160v30H110z"/>
-            </g>
-          </svg>
-        </div>
-        <div class="orb" aria-hidden="true"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Trust badges -->
-  <div class="container row chips" aria-label="Trust badges">
-    <span class="badge"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> 2-Year Warranty</span>
-    <span class="badge"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18"/><path d="M3 12a9 9 0 1 0 18 0 9 9 0 1 0-18 0Z"/></svg> 24/7 Support</span>
-    <span class="badge"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18l-2 13H5L3 3Z"/></svg> Free Returns</span>
-    <span class="badge"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> Secure Checkout</span>
-  </div>
-
-  <!-- Features -->
-  <section id="features" class="section">
-    <div class="container">
-      <p class="sub">Why Toolstrend</p>
-      <h2>Industrial quality, small-shop care</h2>
-      <p class="mt-2 muted">We hand-pick dependable equipment for contractors, facilities, and serious DIYers — and back it with real humans.</p>
-      <div class="feature-grid mt-4">
-        <article class="feature card">
-          <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18v14H3z"/><path d="M8 21h8"/></svg></div>
-          <h3>Direct Import Pricing</h3>
-          <p>Skip the middlemen. We import leading brands and pass the savings to you.</p>
-        </article>
-        <article class="feature card">
-          <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M5 8l7-7 7 7"/></svg></div>
-          <h3>Built to Last</h3>
-          <p>Components are tested to industrial standards with generous warranties.</p>
-        </article>
-        <article class="feature card">
-          <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5-5 5 5"/></svg></div>
-          <h3>Fast, Free Shipping</h3>
-          <p>US delivery in 2–4 days on most orders. Real-time tracking included.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- Categories -->
-  <section id="categories" class="section">
-    <div class="container">
-      <p class="sub">Shop by Category</p>
-      <h2>Power up every project</h2>
-      <div class="product-grid mt-3">
-        <a href="#products" class="product card">
-          <div class="thumb center"><span class="chip">Submersible Pumps</span></div>
-          <div style="padding:14px">
-            <h3>Pumps & Motors</h3>
-            <p class="muted">Borewell, drainage, booster, and more.</p>
-          </div>
-        </a>
-        <a href="#products" class="product card">
-          <div class="thumb center"><span class="chip">Cordless</span></div>
-          <div style="padding:14px">
-            <h3>Power Tools</h3>
-            <p class="muted">Drills, drivers, angle grinders, kits.</p>
-          </div>
-        </a>
-        <a href="#products" class="product card">
-          <div class="thumb center"><span class="chip">Industrial</span></div>
-          <div style="padding:14px">
-            <h3>Compressors</h3>
-            <p class="muted">Silent, oil-free, shop, portable.</p>
-          </div>
-        </a>
-        <a href="#products" class="product card">
-          <div class="thumb center"><span class="chip">Safety</span></div>
-          <div style="padding:14px">
-            <h3>Accessories</h3>
-            <p class="muted">Bits, blades, PPE, and spares.</p>
-          </div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Products -->
-  <section id="products" class="section">
-    <div class="container">
-      <p class="sub">Bestsellers</p>
-      <h2>Top picks this week</h2>
-      <div class="row mt-3" style="gap:8px">
-        <button class="chip" data-filter="all">All</button>
-        <button class="chip" data-filter="pumps">Pumps</button>
-        <button class="chip" data-filter="tools">Tools</button>
-        <button class="chip" data-filter="accessories">Accessories</button>
-      </div>
-      <div class="product-grid mt-4" id="productGrid">
-        <!-- Product Card Template -->
-        <article class="product card" data-cat="pumps">
-          <div class="thumb"><img src="https://images.unsplash.com/photo-1605478482599-0f9b86795164?q=80&w=1200&auto=format&fit=crop" alt="Stainless submersible pump" loading="lazy"></div>
-          <div style="padding:14px">
-            <h3>Hydro Pro 1.5HP Submersible Pump</h3>
-            <p class="muted">High head, energy-efficient, 100% copper winding.</p>
-            <div class="row mt-2" style="justify-content:space-between; align-items:center">
-              <div class="price"><strong>$289</strong> <span class="strike">$349</span></div>
-              <a class="btn" href="#contact">Enquire</a>
-            </div>
-          </div>
-        </article>
-        <article class="product card" data-cat="tools">
-          <div class="thumb"><img src="https://images.unsplash.com/photo-1519222970733-f546218fa6d7?q=80&w=1200&auto=format&fit=crop" alt="Cordless drill driver" loading="lazy"></div>
-          <div style="padding:14px">
-            <h3>18V Brushless Drill Driver Kit</h3>
-            <p class="muted">2 batteries, fast charger, 60Nm torque.</p>
-            <div class="row mt-2" style="justify-content:space-between; align-items:center">
-              <div class="price"><strong>$159</strong> <span class="strike">$189</span></div>
-              <a class="btn" href="#contact">Enquire</a>
-            </div>
-          </div>
-        </article>
-        <article class="product card" data-cat="tools">
-          <div class="thumb"><img src="https://images.unsplash.com/photo-1600209142003-ed4e14f3c008?q=80&w=1200&auto=format&fit=crop" alt="Angle grinder" loading="lazy"></div>
-          <div style="padding:14px">
-            <h3>850W Angle Grinder 4.5"</h3>
-            <p class="muted">Compact body, quick-guard, includes 3 discs.</p>
-            <div class="row mt-2" style="justify-content:space-between; align-items:center">
-              <div class="price"><strong>$49</strong> <span class="strike">$69</span></div>
-              <a class="btn" href="#contact">Enquire</a>
-            </div>
-          </div>
-        </article>
-        <article class="product card" data-cat="accessories">
-          <div class="thumb"><img src="https://images.unsplash.com/photo-1532007271951-c48776093416?q=80&w=1200&auto=format&fit=crop" alt="Safety gear" loading="lazy"></div>
-          <div style="padding:14px">
-            <h3>Pro PPE Safety Pack</h3>
-            <p class="muted">ANSI-rated goggles, gloves, ear protection.</p>
-            <div class="row mt-2" style="justify-content:space-between; align-items:center">
-              <div class="price"><strong>$39</strong> <span class="strike">$59</span></div>
-              <a class="btn" href="#contact">Enquire</a>
-            </div>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- Reviews -->
-  <section id="reviews" class="section">
-    <div class="container">
-      <p class="sub">Reviews</p>
-      <h2>Loved by pros & homeowners</h2>
-      <div class="carousel mt-3">
-        <div class="carousel-track" aria-label="Customer testimonials">
-          <article class="item card" style="padding:18px">
-            <div class="row" style="align-items:center; gap:10px">
-              <img src="https://i.pravatar.cc/64?img=12" alt="Avatar" width="44" height="44" style="border-radius:50%" loading="lazy"/>
-              <strong>Marcus R.</strong>
-              <span class="muted">Contractor</span>
-            </div>
-            <p class="mt-2">“We swapped to Hydro Pro pumps on a hotel project — solid build, quiet, and great support.”</p>
-            <div class="row" aria-label="Rating">
-              <span>★★★★★</span>
-            </div>
-          </article>
-          <article class="item card" style="padding:18px">
-            <div class="row" style="align-items:center; gap:10px">
-              <img src="https://i.pravatar.cc/64?img=21" alt="Avatar" width="44" height="44" style="border-radius:50%" loading="lazy"/>
-              <strong>Sara P.</strong>
-              <span class="muted">Homeowner</span>
-            </div>
-            <p class="mt-2">“The cordless kit is a beast. Battery life is insane and shipping was quick.”</p>
-            <div class="row" aria-label="Rating">
-              <span>★★★★★</span>
-            </div>
-          </article>
-          <article class="item card" style="padding:18px">
-            <div class="row" style="align-items:center; gap:10px">
-              <img src="https://i.pravatar.cc/64?img=36" alt="Avatar" width="44" height="44" style="border-radius:50%" loading="lazy"/>
-              <strong>Devon K.</strong>
-              <span class="muted">Facility Manager</span>
-            </div>
-            <p class="mt-2">“Pricing is fair and service is responsive. We’ll be returning for quarterly supplies.”</p>
-            <div class="row" aria-label="Rating">
-              <span>★★★★★</span>
-            </div>
-          </article>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Blog -->
-  <section id="blog" class="section">
-    <div class="container">
-      <p class="sub">From the Blog</p>
-      <h2>Tips, comparisons & maintenance</h2>
-      <div class="blog-grid mt-3">
-        <article class="post card">
-          <div class="thumb"></div>
-          <div style="padding:14px">
-            <h3>Submersible vs. Jet Pumps — Which is Right?</h3>
-            <p class="muted">Understand head, flow rate, and efficiency for your application.</p>
-            <a class="btn secondary mt-2" href="#">Read</a>
-          </div>
-        </article>
-        <article class="post card">
-          <div class="thumb"></div>
-          <div style="padding:14px">
-            <h3>Power Tool Battery Guide (2025)</h3>
-            <p class="muted">The differences between 18V and 20V Max, explained clearly.</p>
-            <a class="btn secondary mt-2" href="#">Read</a>
-          </div>
-        </article>
-        <article class="post card">
-          <div class="thumb"></div>
-          <div style="padding:14px">
-            <h3>Shop Safety Checklist You Can Print</h3>
-            <p class="muted">Quick wins to reduce downtime and prevent injuries.</p>
-            <a class="btn secondary mt-2" href="#">Read</a>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section id="faq" class="section">
-    <div class="container">
-      <p class="sub">FAQ</p>
-      <h2>Answers to common questions</h2>
-      <details class="card mt-3" style="padding:16px">
-        <summary><strong>Do you ship across the United States?</strong></summary>
-        <p class="mt-2">Yes, we ship to all 48 contiguous states. Orders over $50 ship free via ground.</p>
-      </details>
-      <details class="card mt-2" style="padding:16px">
-        <summary><strong>Can I request a bulk quote?</strong></summary>
-        <p class="mt-2">Absolutely. Use the contact form and select “Bulk/Wholesale.” We’ll reply within one business day.</p>
-      </details>
-      <details class="card mt-2" style="padding:16px">
-        <summary><strong>What warranty options do you offer?</strong></summary>
-        <p class="mt-2">All products include 1–2 year manufacturer warranty. Extended protection up to 10 years is available on select items.</p>
-      </details>
-    </div>
-  </section>
-
-  <!-- CTA Banner -->
-  <section class="section">
-    <div class="container cta-banner card" style="padding:18px">
-      <div>
-        <p class="sub">Limited-time</p>
-        <h2>Get 10% off your first order</h2>
-        <p class="muted">Join our newsletter for exclusive deals, how‑to guides, and product launches.</p>
-        <form class="row mt-3" id="newsletterForm" onsubmit="return false" aria-label="Newsletter form">
-          <input type="email" name="email" placeholder="you@example.com" aria-label="Email" required>
-          <button class="btn" id="joinBtn">Join Free</button>
-        </form>
-        <p id="newsletterMsg" class="mt-2 muted" role="status"></p>
-      </div>
-      <div class="card center" style="padding:18px">
-        <h3 class="mb-1">Need expert advice?</h3>
-        <p class="muted mb-3">Chat with a product specialist for sizing, installation, and maintenance tips.</p>
-        <a href="#contact" class="btn">Talk to an Expert</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact" class="section">
-    <div class="container">
-      <p class="sub">Contact</p>
-      <h2>Get a custom quote</h2>
-      <div class="grid" style="grid-template-columns:1.1fr .9fr; gap:18px">
-        <form class="card" style="padding:18px" id="contactForm" onsubmit="return false">
-          <div class="grid" style="grid-template-columns:1fr 1fr; gap:12px">
-            <div class="input-group">
-              <label for="name">Name</label>
-              <input id="name" name="name" placeholder="Your name" required>
-            </div>
-            <div class="input-group">
-              <label for="email">Email</label>
-              <input id="email" name="email" type="email" placeholder="you@example.com" required>
-            </div>
-          </div>
-          <div class="grid mt-2" style="grid-template-columns:1fr 1fr; gap:12px">
-            <div class="input-group">
-              <label for="phone">Phone</label>
-              <input id="phone" name="phone" placeholder="(555) 555-5555">
-            </div>
-            <div class="input-group">
-              <label for="type">Project Type</label>
-              <input id="type" name="type" placeholder="Residential / Commercial / Industrial">
-            </div>
-          </div>
-          <div class="input-group mt-2">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" rows="5" placeholder="Tell us what you need…"></textarea>
-          </div>
-          <div class="row mt-3" style="justify-content:space-between; align-items:center">
-            <label class="muted"><input type="checkbox" required> I agree to the terms and privacy policy</label>
-            <button class="btn" id="sendBtn">Send Request</button>
-          </div>
-          <p id="contactMsg" class="mt-2 muted" role="status"></p>
-        </form>
-        <aside class="card" style="padding:18px">
-          <h3>US Sales & Support</h3>
-          <p class="mt-1 muted">Mon–Fri, 8:00–18:00 (EST)</p>
-          <div class="divider mt-3"></div>
-          <ul class="list-reset" style="display:grid; gap:10px; margin-top:12px">
-            <li class="row" style="align-items:center; gap:10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 3.11 3.18 2 2 0 0 1 5.11 1h3a2 2 0 0 1 2 1.72 12.66 12.66 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L9 9a16 16 0 0 0 6 6l1.36-1.36a2 2 0 0 1 2.11-.45 12.66 12.66 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z"/></svg> +1 (800) 555‑0199</li>
-            <li class="row" style="align-items:center; gap:10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1 3.7-6.4"/></svg> support@toolstrend.com</li>
-            <li class="row" style="align-items:center; gap:10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 2 7l10 5 10-5Z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg> 1200 Market St, San Francisco, CA</li>
+  <main id="home" class="hero">
+    <div class="container hero-grid">
+      <div class="reveal">
+        <span class="tag">Professional Submersible Pumps & Motors</span>
+        <h2 class="title">Direct importer. Premium brands. Unbeatable prices.</h2>
+        <p>From deep‑well submersibles to control panels, we stock reliable solutions for agriculture, housing, and industry.</p>
+        <div class="hero-card">
+          <strong>Why choose us</strong>
+          <ul class="hero-list">
+            <li>Factory‑direct sourcing</li>
+            <li>1‑year warranty</li>
+            <li>Genuine spare parts</li>
+            <li>Nationwide delivery</li>
           </ul>
-          <div class="divider mt-3"></div>
-          <p class="mt-3 muted">Looking for wholesale? Email <a href="#">sales@toolstrend.com</a> with your requirements.</p>
-        </aside>
+        </div>
+        <div class="cta">
+          <a class="btn primary" href="#quote">Send Quote Request</a>
+          <a class="btn ghost" href="#catalog">View Catalog</a>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="card shadow">
+          <div class="img" role="img" aria-label="Display of submersible pumps and motors">
+            YOUR PRODUCT PHOTO
+          </div>
+          <div class="body">
+            <span class="pill orange">Hot</span>
+            <strong style="display:block;margin-top:8px">Submersible pump sets</strong>
+            <p class="muted" style="margin-top:6px">Stainless steel impellers, high‑efficiency motors. Bulk pricing available.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Brands marquee -->
+    <section id="brands" class="brands">
+      <div class="container marquee" aria-label="Brand list">
+        <div class="track">
+          <span>Dongyin</span><span>Hydro Pro</span><span></span><span></span><span></span>
+          <span>Dongyin</span><span>Hydro Pro</span><span></span><span></span><span></span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Store -->
+  <section id="store">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <div class="kicker">Products</div>
+          <h3 class="title" style="font-size:28px">Everything you need for pumping systems</h3>
+        </div>
+        <div class="actions">
+          <button class="btn ghost" onclick="exportProducts()">Export products</button>
+          <label class="btn blue" for="import-file" style="cursor:pointer">Import products</label>
+          <input id="import-file" type="file" accept=".json,.csv" style="display:none" onchange="importProducts(this.files[0])"/>
+        </div>
+      </div>
+
+      <div id="product-grid" class="grid-4 reveal" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" style="background:var(--soft)">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <div class="kicker">Services</div>
+          <h3 class="title" style="font-size:28px">Wholesale, retail, and technical support</h3>
+        </div>
+        <a class="btn primary" href="#quote">Talk to sales</a>
+      </div>
+      <div class="grid-4">
+        <div class="card reveal"><div class="img">Wholesale Orders</div><div class="body"><p>Tiered pricing for dealers and contractors with fast dispatch.</p></div></div>
+        <div class="card reveal"><div class="img">Retail Sales</div><div class="body"><p>Ready stock and guidance to fit your application and budget.</p></div></div>
+        <div class="card reveal"><div class="img">Technical Support</div><div class="body"><p>Warranty handling, install partners, and troubleshooting.</p></div></div>
+        <div class="card reveal"><div class="img">Custom Import</div><div class="body"><p>Special orders and OEM sourcing tailored to your needs.</p></div></div>
       </div>
     </div>
   </section>
 
+  <!-- Catalog & Quote -->
+  <section id="catalog">
+    <div class="container">
+      <div class="cta-band reveal">
+        <h4>Need specs or pricing? Get the latest catalog or a personalized quote.</h4>
+        <div class="actions">
+          <a class="btn ghost" href="catalog.pdf" download>Download catalog</a>
+          <a class="btn primary" href="#quote">Request quote</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact / Quote -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <div class="kicker">Contact</div>
+          <h3 class="title" style="font-size:28px">Let’s get you the right pump</h3>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="card reveal">
+          <div class="body">
+            <strong>Showroom</strong>
+            <p>Rawalpindi, Punjab, Pakistan</p>
+            <p><a href="tel:+923339708541">+92 333 9708541</a><br><a href="mailto:gulabafridi1985@gmail.com">gulabafridi1985@gmail.com</a></p>
+            <p class="muted">Mon–Sat 9:00–6:00</p>
+          </div>
+        </div>
+
+        <div class="card reveal" id="quote">
+          <div class="body">
+            <strong>Send quote request</strong>
+            <form onsubmit="return sendQuote(event)">
+              <div class="field"><label>Name</label><input required type="text" placeholder="Your name"/></div>
+              <div class="field"><label>Phone or WhatsApp</label><input required type="text" placeholder="+92…"/></div>
+              <div class="field"><label>Email</label><input type="text" placeholder="optional"/></div>
+              <div class="field"><label>Details</label><textarea required rows="4" placeholder="Product, quantity, delivery city"></textarea></div>
+              <div class="actions">
+                <button class="btn primary" type="submit">Send request</button>
+                <a class="btn blue" target="_blank" rel="noopener" href="https://wa.me/923339708541?text=Hello%20Naif%20Enterprise%2C%20I%27d%20like%20a%20quote.">WhatsApp now</a>
+              </div>
+              <p id="form-msg" class="muted" style="display:none;margin-top:6px;color:#0a7f3f!important">Thanks! We’ll contact you shortly.</p>
+            </form>
+          </div>
+        </div>
+
+        <div class="card reveal">
+          <div class="body">
+            <strong>Helpful links</strong>
+            <p><a href="#brands">Brand list</a></p>
+            <p><a href="#store">Product categories</a></p>
+            <p><a href="#services">Service options</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Admin: Manage Products -->
+  <section id="admin">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="kicker">Product manager</div>
+          <h3 class="title" style="font-size:28px">Add, import, and manage products</h3>
+          <p class="muted" style="margin-top:6px">Products are saved in your browser (local). Export JSON to move to another device or host.</p>
+        </div>
+      </div>
+
+      <div class="admin-grid">
+        <div class="panel">
+          <h4>Add a product</h4>
+          <div class="field"><label>Product name</label><input id="p-name" type="text" placeholder="e.g., 4&quot; Submersible Pump" /></div>
+          <div class="field"><label>Price</label><input id="p-price" type="number" min="0" step="0.01" placeholder="e.g., 26500"/></div>
+          <div class="field"><label>Category</label>
+            <select id="p-category">
+              <option>Submersible Pumps</option>
+              <option>Motors</option>
+              <option>Control Panels</option>
+              <option>Surface Pumps</option>
+              <option>Sewage Pumps</option>
+              <option>Agricultural Systems</option>
+              <option>Spare Parts</option>
+            </select>
+          </div>
+          <div class="field"><label>Description</label><textarea id="p-desc" rows="3" placeholder="Key specs or notes"></textarea></div>
+          <div class="field"><label>Image</label><input id="p-image" type="file" accept="image/*"/></div>
+          <div class="actions">
+            <button class="btn primary" onclick="addProduct()">Add product</button>
+            <button class="btn ghost" onclick="clearForm()">Clear form</button>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h4>Import/Export</h4>
+          <p class="muted">Import a .json or .csv file with columns: name,price,category,description,image (URL optional).</p>
+          <div class="actions" style="margin:8px 0">
+            <label class="btn blue" for="import-file-2" style="cursor:pointer">Import file</label>
+            <input id="import-file-2" type="file" accept=".json,.csv" style="display:none" onchange="importProducts(this.files[0])"/>
+            <button class="btn ghost" onclick="exportProducts()">Export JSON</button>
+            <button class="btn ghost" onclick="seedDemo()">Load demo items</button>
+            <button class="btn ghost" onclick="clearAllProducts()">Clear all</button>
+          </div>
+          <details style="margin-top:8px">
+            <summary>CSV example</summary>
+            <pre style="white-space:pre-wrap;background:#f8fafc;border:1px solid #e7eef8;border-radius:8px;padding:10px;font-size:12px">name,price,category,description,image
+"4 inch Submersible Pump",26500,"Submersible Pumps","Stainless steel, multi-stage","https://via.placeholder.com/600x400.png?text=Pump"
+"0.75HP Motor",18500,"Motors","Copper windings, water-filled","https://via.placeholder.com/600x400.png?text=Motor"</pre>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
   <footer>
     <div class="container footer-grid">
       <div>
-        <div class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 21h12M9 21V8a3 3 0 0 1 6 0v13"/><path d="M3 10h18M12 3v3"/></svg><strong>Toolstrend</strong></div>
-        <p class="mt-2 muted">Your trusted source for pumps, tools, and industrial supplies.</p>
-        <div class="row mt-3">
-          <a class="chip" href="#">Facebook</a>
-          <a class="chip" href="#">Instagram</a>
-          <a class="chip" href="#">LinkedIn</a>
-        </div>
+        <h5>About Naif Enterprise</h5>
+        <p>We specialize in pumps and motor solutions, offering wholesale and retail supply, technical support, and custom import services. Our mission is to deliver reliable products at unbeatable prices.</p>
       </div>
       <div>
-        <h3>Shop</h3>
-        <ul class="list-reset mt-2" style="display:grid; gap:8px">
-          <li><a href="#categories">Categories</a></li>
-          <li><a href="#products">Bestsellers</a></li>
-          <li><a href="#faq">Shipping</a></li>
+        <h5>Products</h5>
+        <ul>
+          <li>Submersible Pumps</li>
+          <li>Sewage Pumps</li>
+          <li>Industrial Motors</li>
+          <li>Agricultural Systems</li>
         </ul>
       </div>
       <div>
-        <h3>Company</h3>
-        <ul class="list-reset mt-2" style="display:grid; gap:8px">
-          <li><a href="#">About</a></li>
-          <li><a href="#">Careers</a></li>
-          <li><a href="#">Press</a></li>
+        <h5>Brands</h5>
+        <ul>
+          <li>Dongyin</li>
+          <li>Hydro Pro</li>
+          <li>Custom Solutions</li>
+          <li>OEM Products</li>
         </ul>
-      </div>
-      <div>
-        <h3>Legal</h3>
-        <ul class="list-reset mt-2" style="display:grid; gap:8px">
-          <li><a href="#">Privacy</a></li>
-          <li><a href="#">Terms</a></li>
-          <li><a href="#">Returns</a></li>
+        <h5 style="margin-top:14px">Services</h5>
+        <ul>
+          <li>Wholesale Orders</li>
+          <li>Retail Sales</li>
+          <li>Technical Support</li>
+          <li>Custom Import</li>
         </ul>
       </div>
     </div>
-    <div class="container" style="margin-top:24px; color:#94a3b8">© <span id="year"></span> Toolstrend. All rights reserved.</div>
+    <div class="container copy">
+      <p>📞 <a href="tel:+923339708541" style="color:#91a0b4">+92 333 9708541</a> |
+         ✉️ <a href="mailto:gulabafridi1985@gmail.com" style="color:#91a0b4">gulabafridi1985@gmail.com</a></p>
+      <p>© <span id="year"></span> Naif Enterprise. All rights reserved.</p>
+    </div>
   </footer>
 
-  <!-- Back to top -->
-  <button id="toTop" class="btn" aria-label="Back to top" style="position:fixed; right:18px; bottom:18px; display:none">▲</button>
+  <!-- Sticky quick actions -->
+  <div class="sticky" aria-label="Quick contact">
+    <a class="fab" href="tel:+923339708541" title="Call us">📞</a>
+    <a class="fab primary" href="https://wa.me/923339708541" target="_blank" rel="noopener" title="WhatsApp">🟢</a>
+  </div>
 
   <script>
-    // Mobile menu toggle
-    const toggle = document.getElementById('mobileToggle');
-    const menu = document.getElementById('mobileMenu');
-    toggle?.addEventListener('click', () => {
-      const hidden = menu.hasAttribute('hidden');
-      if(hidden) menu.removeAttribute('hidden'); else menu.setAttribute('hidden','');
-    });
-
-    // Smooth scroll for in-page links
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{
-      a.addEventListener('click', e=>{
-        const id=a.getAttribute('href').slice(1);
-        const el=document.getElementById(id);
-        if(el){
-          e.preventDefault();
-          el.scrollIntoView({behavior:'smooth', block:'start'});
-          if(!menu.hasAttribute('hidden')) menu.setAttribute('hidden','');
-        }
-      });
-    });
-
-    // Filter products
-    document.querySelectorAll('[data-filter]').forEach(btn=>{
-      btn.addEventListener('click',()=>{
-        const cat=btn.dataset.filter;
-        document.querySelectorAll('#productGrid .product').forEach(card=>{
-          card.style.display=(cat==='all'|| card.dataset.cat===cat)?'block':'none';
-        })
-      })
-    })
-
-    // Newsletter mock submit
-    const nForm=document.getElementById('newsletterForm');
-    const nMsg=document.getElementById('newsletterMsg');
-    nForm?.addEventListener('submit',()=>{
-      const email=nForm.email.value.trim();
-      const ok=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-      nMsg.textContent = ok? 'Thanks! Your 10% code is on the way to '+email : 'Please enter a valid email address.';
-      nMsg.style.color = ok? '#86efac':'#fca5a5';
-    })
-
-    // Contact mock submit
-    const cForm=document.getElementById('contactForm');
-    const cMsg=document.getElementById('contactMsg');
-    cForm?.addEventListener('submit',()=>{
-      const required=[...cForm.querySelectorAll('[required]')];
-      const ok=required.every(i=>i.value.trim().length>1);
-      cMsg.textContent = ok? 'Thanks! A specialist will reach out shortly.' : 'Please fill the required fields.';
-      cMsg.style.color = ok? '#86efac':'#fca5a5';
-    })
-
-    // Back to top
-    const toTop=document.getElementById('toTop');
-    window.addEventListener('scroll',()=>{
-      toTop.style.display = window.scrollY>600 ? 'inline-flex':'none';
-    });
-    toTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+    // Basic nav toggle
+    function toggleNav(){ document.getElementById('nav').classList.toggle('open'); }
 
     // Year
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Quote form (demo only)
+    function sendQuote(e){
+      e.preventDefault();
+      document.getElementById('form-msg').style.display='block';
+      setTimeout(()=>{document.getElementById('form-msg').style.display='none'}, 4000);
+      e.target.reset();
+      return false;
+    }
+
+    // Scroll reveal
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+    },{threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+    // Product storage helpers
+    const KEY='naif_products_v1';
+
+    function getProducts(){
+      try{ return JSON.parse(localStorage.getItem(KEY)) || []; }catch(e){ return []; }
+    }
+    function setProducts(arr){
+      localStorage.setItem(KEY, JSON.stringify(arr));
+      renderProducts();
+    }
+
+    // Render product cards to grid
+    function renderProducts(){
+      const grid = document.getElementById('product-grid');
+      const items = getProducts();
+      if(!items.length){
+        grid.innerHTML = `
+          <div class="card"><div class="img">Submersible Pumps</div><div class="body"><strong>Deep‑well series</strong><p class="muted">4"–8" multi‑stage pumps.</p></div></div>
+          <div class="card"><div class="img">Motors</div><div class="body"><strong>Oil & water‑filled</strong><p class="muted">High‑efficiency motors.</p></div></div>
+          <div class="card"><div class="img">Control Panels</div><div class="body"><strong>Auto & manual</strong><p class="muted">Overload & dry‑run safety.</p></div></div>
+          <div class="card"><div class="img">Sewage Pumps</div><div class="body"><strong>Waste water</strong><p class="muted">Drainage & dewatering.</p></div></div>`;
+        return;
+      }
+      grid.innerHTML = items.map((p,idx)=>`
+        <div class="card reveal" style="overflow:hidden">
+          <div class="img" style="padding:0">
+            ${p.image ? `<img alt="${escapeHtml(p.name||'Product')}" src="${p.image}" style="width:100%;height:170px;object-fit:cover">` : 'Product'}
+          </div>
+          <div class="body">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
+              <strong>${escapeHtml(p.name||'Unnamed')}</strong>
+              ${p.price?`<span class="pill">PKR ${formatPrice(p.price)}</span>`:''}
+            </div>
+            ${p.category?`<p class="muted" style="margin:6px 0 0">${escapeHtml(p.category)}</p>`:''}
+            ${p.description?`<p style="margin:6px 0 0">${escapeHtml(p.description)}</p>`:''}
+            <div class="actions" style="margin-top:10px">
+              <a class="btn ghost" href="#quote">Get quote</a>
+              <button class="btn ghost" onclick="removeProduct(${idx})" title="Remove">Delete</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+      // re-apply reveal to new cards
+      document.querySelectorAll('#product-grid .reveal').forEach(el=>io.observe(el));
+    }
+
+    function formatPrice(v){
+      try{
+        const n = Number(v);
+        return n.toLocaleString('en-PK', {maximumFractionDigits:0});
+      }catch(_){ return v }
+    }
+
+    function escapeHtml(s){
+      return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+    }
+
+    // Add product from form
+    function addProduct(){
+      const name = document.getElementById('p-name').value.trim();
+      const price = document.getElementById('p-price').value.trim();
+      const category = document.getElementById('p-category').value;
+      const description = document.getElementById('p-desc').value.trim();
+      const file = document.getElementById('p-image').files[0];
+
+      if(!name){ alert('Please enter a product name'); return; }
+
+      const save = (image)=> {
+        const items = getProducts();
+        items.unshift({name,price,category,description,image});
+        setProducts(items);
+        clearForm();
+        window.location.hash = '#store';
+        window.scrollTo({top:document.getElementById('store').offsetTop-60,behavior:'smooth'});
+      };
+
+      if(file){
+        const reader = new FileReader();
+        reader.onload = e => save(e.target.result);
+        reader.readAsDataURL(file);
+      }else{
+        save('');
+      }
+    }
+
+    function clearForm(){
+      ['p-name','p-price','p-desc','p-image'].forEach(id=>{
+        const el=document.getElementById(id);
+        if(!el) return;
+        if(el.type==='file') el.value='';
+        else el.value='';
+      });
+      document.getElementById('p-category').selectedIndex = 0;
+    }
+
+    function removeProduct(index){
+      if(!confirm('Remove this product?')) return;
+      const items = getProducts();
+      items.splice(index,1);
+      setProducts(items);
+    }
+
+    function clearAllProducts(){
+      if(!confirm('Clear ALL products?')) return;
+      setProducts([]);
+    }
+
+    // Export / Import
+    function exportProducts(){
+      const data = getProducts();
+      const blob = new Blob([JSON.stringify(data,null,2)], {type:'application/json'});
+      const url = URL.createObjectURL(blob);
+      const a = Object.assign(document.createElement('a'), {href:url, download:'naif-products.json'});
+      document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+    }
+
+    async function importProducts(file){
+      if(!file) return;
+      const text = await file.text();
+      let list=[];
+      try{
+        if(file.name.toLowerCase().endsWith('.json')){
+          list = JSON.parse(text);
+        }else{
+          list = parseCSV(text);
+        }
+      }catch(e){ alert('Could not parse file. Make sure it is valid JSON or CSV.'); return; }
+      if(!Array.isArray(list)) { alert('Invalid data'); return; }
+      // Normalize
+      const normalized = list.map(p=>({
+        name: p.name || p.title || 'Product',
+        price: p.price || '',
+        category: p.category || '',
+        description: p.description || p.desc || '',
+        image: p.image || p.img || ''
+      }));
+      const current = getProducts();
+      setProducts([...normalized, ...current]);
+      window.location.hash = '#store';
+    }
+
+    function parseCSV(text){
+      const rows = text.split(/\r?\n/).filter(r=>r.trim().length);
+      if(!rows.length) return [];
+      const headers = rows[0].split(',').map(h=>h.trim().replace(/^"|"$/g,''));
+      return rows.slice(1).map(line=>{
+        const cols = splitCsvLine(line);
+        const obj={};
+        headers.forEach((h,i)=> obj[h]= (cols[i]||'').replace(/^"|"$/g,''));
+        return obj;
+      });
+    }
+    function splitCsvLine(line){
+      const out=[]; let cur=''; let q=false;
+      for(let i=0;i<line.length;i++){
+        const c=line[i];
+        if(c==='"' ){ q=!q; continue; }
+        if(c===',' && !q){ out.push(cur); cur=''; continue; }
+        cur+=c;
+      }
+      out.push(cur);
+      return out;
+    }
+
+    // Demo products (optional)
+    function seedDemo(){
+      const demo = [
+        {name:'4" Submersible Pump', price:26500, category:'Submersible Pumps', description:'Stainless steel, multi‑stage', image:'https://images.unsplash.com/photo-1562158070-974d1cb3bd39?q=80&w=1200&auto=format&fit=crop'},
+        {name:'0.75HP Motor', price:18500, category:'Motors', description:'Copper windings, water‑filled', image:'https://images.unsplash.com/photo-1608222351212-18fe0ec7b13f?q=80&w=1200&auto=format&fit=crop'},
+        {name:'Control Panel', price:14500, category:'Control Panels', description:'Overload & dry‑run protection', image:'https://images.unsplash.com/photo-1581091014534-5c76a1a94037?q=80&w=1200&auto=format&fit=crop'}
+      ];
+      const items = getProducts();
+      setProducts([...demo, ...items]);
+      window.location.hash = '#store';
+    }
+
+    // Initial render
+    renderProducts();
   </script>
 </body>
 </html>
+<!-- ... everything from the previous HTML stays the same until just before the #admin section ... -->
+
+<!-- Admin Login -->
+<section id="admin-login" style="padding:60px 0; background:#f6f9ff; text-align:center;">
+  <div class="container">
+    <h3 class="title" style="font-size:28px">Admin Login</h3>
+    <p class="muted">Enter password to manage products</p>
+    <input id="admin-pass" type="password" placeholder="Password" 
+           style="padding:12px; border:1px solid #dbe3f0; border-radius:10px; font-size:16px; margin-top:10px;">
+    <br><br>
+    <button class="btn primary" onclick="checkAdminPassword()">Login</button>
+    <p id="login-msg" style="color:red; display:none; margin-top:10px;">Incorrect password</p>
+  </div>
+</section>
+
+<!-- Admin: Manage Products -->
+<section id="admin" style="display:none;">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="kicker">Product manager</div>
+        <h3 class="title" style="font-size:28px">Add, import, and manage products</h3>
+        <p class="muted" style="margin-top:6px">Products are saved in your browser (local). Export JSON to move to another device or host.</p>
+      </div>
+    </div>
+
+    <div class="admin-grid">
+      <div class="panel">
+        <h4>Add a product</h4>
+        <div class="field"><label>Product name</label><input id="p-name" type="text" placeholder="e.g., 4&quot; Submersible Pump" /></div>
+        <div class="field"><label>Price</label><input id="p-price" type="number" min="0" step="0.01" placeholder="e.g., 26500"/></div>
+        <div class="field"><label>Category</label>
+          <select id="p-category">
+            <option>Submersible Pumps</option>
+            <option>Motors</option>
+            <option>Control Panels</option>
+            <option>Surface Pumps</option>
+            <option>Sewage Pumps</option>
+            <option>Agricultural Systems</option>
+            <option>Spare Parts</option>
+          </select>
+        </div>
+        <div class="field"><label>Description</label><textarea id="p-desc" rows="3" placeholder="Key specs or notes"></textarea></div>
+        <div class="field"><label>Image</label><input id="p-image" type="file" accept="image/*"/></div>
+        <div class="actions">
+          <button class="btn primary" onclick="addProduct()">Add product</button>
+          <button class="btn ghost" onclick="clearForm()">Clear form</button>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h4>Import/Export</h4>
+        <p class="muted">Import a .json or .csv file with columns: name,price,category,description,image (URL optional).</p>
+        <div class="actions" style="margin:8px 0">
+          <label class="btn blue" for="import-file-2" style="cursor:pointer">Import file</label>
+          <input id="import-file-2" type="file" accept=".json,.csv" style="display:none" onchange="importProducts(this.files[0])"/>
+          <button class="btn ghost" onclick="exportProducts()">Export JSON</button>
+          <button class="btn ghost" onclick="seedDemo()">Load demo items</button>
+          <button class="btn ghost" onclick="clearAllProducts()">Clear all</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
