@@ -1,503 +1,156 @@
-# Regenerate the site but avoid nested triple-quote issues by constructing product cards with helper functions.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Naif Enterprise</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+    header {
+      background-color: #004d00;
+      color: white;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .hero {
+      background: linear-gradient(to right, #006400, #003300);
+      color: white;
+      padding: 80px 20px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+    .hero button {
+      background-color: white;
+      color: #006400;
+      border: none;
+      padding: 12px 24px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 40px 20px;
+      background-color: white;
+    }
+    .product-card {
+      width: 300px;
+      margin: 20px;
+      text-align: center;
+    }
+    .product-card img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+    .product-card h3 {
+      margin: 10px 0;
+      color: #004d00;
+    }
+    .product-card a {
+      text-decoration: none;
+      color: #006400;
+      font-weight: bold;
+    }
+    .about {
+      padding: 40px 20px;
+      background-color: #e6ffe6;
+      text-align: center;
+    }
+    .about h2 {
+      color: #004d00;
+    }
+    .contact {
+      background-color: #004d00;
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+    }
+    .contact button {
+      background-color: white;
+      color: #004d00;
+      border: none;
+      padding: 12px 24px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    footer {
+      background-color: #002200;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
 
-import os, zipfile, json
-
-base_dir = "/mnt/data/naif_enterprises_site"
-assets_dir = os.path.join(base_dir, "assets")
-img_dir = os.path.join(assets_dir, "img")
-
-# Clean and recreate directories
-import shutil
-if os.path.exists(base_dir):
-    shutil.rmtree(base_dir)
-os.makedirs(img_dir, exist_ok=True)
-
-styles_css = """
-/* Naif Enterprises - Static Site Theme (Light, clean, responsive) */
-:root{
-  --bg:#ffffff;
-  --text:#111827;
-  --muted:#6b7280;
-  --primary:#0ea5e9;
-  --primary-dark:#0284c7;
-  --accent:#14b8a6;
-  --card:#f9fafb;
-  --border:#e5e7eb;
-}
-*{box-sizing:border-box}
-html,body{margin:0;padding:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;color:var(--text);background:var(--bg);}
-a{color:var(--primary);text-decoration:none}
-a:hover{text-decoration:underline}
-.container{max-width:1150px;margin:0 auto;padding:0 1rem}
-.btn{display:inline-block;padding:.75rem 1.1rem;border-radius:12px;background:var(--primary);color:#fff;border:1px solid var(--primary);transition:all .2s ease;font-weight:600}
-.btn:hover{background:var(--primary-dark)}
-.btn-outline{background:transparent;color:var(--primary);border-color:var(--primary)}
-.header{position:sticky;top:0;background:rgba(255,255,255,.85);backdrop-filter:saturate(150%) blur(8px);border-bottom:1px solid var(--border);z-index:40}
-.nav{display:flex;align-items:center;justify-content:space-between;height:64px}
-.brand{display:flex;align-items:center;gap:.6rem;font-weight:800;font-size:1.15rem}
-.brand img{height:34px;width:34px;border-radius:8px}
-.nav a{margin:0 .6rem;color:var(--text);font-weight:600}
-.nav .actions{display:flex;align-items:center;gap:.5rem}
-.mobile-toggle{display:none}
-@media (max-width: 860px){
-  .nav .links{display:none}
-  .mobile-toggle{display:block}
-}
-.mobile-menu{display:none;border-top:1px solid var(--border);padding:.5rem 0}
-.mobile-menu.open{display:block}
-.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:2rem;align-items:center;padding:2.5rem 0}
-.hero h1{font-size:2.2rem;line-height:1.1;margin:.2rem 0 1rem}
-.hero p{color:var(--muted);font-size:1.05rem}
-.hero .card{background:linear-gradient(180deg,#f0f9ff,#fff);border:1px solid var(--border);padding:1.25rem;border-radius:18px;box-shadow:0 6px 18px rgba(2,132,199,.08)}
-@media (max-width: 900px){
-  .hero{grid-template-columns:1fr}
-}
-.badges{display:flex;flex-wrap:wrap;gap:.5rem;margin:1rem 0}
-.badge{padding:.35rem .6rem;border-radius:999px;background:#eef6ff;border:1px solid #dbeafe;color:#075985;font-weight:600;font-size:.82rem}
-.grid{display:grid;gap:1rem}
-.cards-3{grid-template-columns:repeat(3,1fr)}
-.cards-4{grid-template-columns:repeat(4,1fr)}
-@media (max-width: 960px){.cards-3{grid-template-columns:repeat(2,1fr)}.cards-4{grid-template-columns:repeat(2,1fr)}}
-@media (max-width: 560px){.cards-3,.cards-4{grid-template-columns:1fr}}
-.card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:1rem;transition:transform .12s ease, box-shadow .12s ease}
-.card:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.06)}
-.card img{width:100%;height:180px;object-fit:cover;border-radius:12px;border:1px solid var(--border);background:#fff}
-.section{padding:2rem 0}
-.section h2{font-size:1.6rem;margin:0 0 .6rem}
-.section p.lead{color:var(--muted)}
-.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:1rem}
-.kpis .kpi{background:#fff;border:1px solid var(--border);border-radius:16px;padding:1rem;text-align:center}
-.kpi .num{font-size:1.6rem;font-weight:800}
-.kpi .label{color:var(--muted)}
-.footer{margin-top:2rem;border-top:1px solid var(--border);background:#fafafa;padding:1.5rem 0;color:#374151}
-.footer .cols{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:1rem}
-.footer a{color:#374151}
-.footer small{color:#6b7280}
-@media (max-width: 860px){.footer .cols{grid-template-columns:1fr 1fr}}
-@media (max-width: 560px){.footer .cols{grid-template-columns:1fr}}
-.feature-list{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
-@media (max-width: 900px){.feature-list{grid-template-columns:1fr 1fr}}
-@media (max-width: 640px){.feature-list{grid-template-columns:1fr}}
-.feature{border:1px dashed var(--border);border-radius:16px;padding:1rem;background:#fff}
-.feature h3{margin:.2rem 0}
-.table{width:100%;border-collapse:collapse;margin-top:1rem}
-.table th,.table td{border:1px solid var(--border);padding:.65rem;text-align:left}
-.table th{background:#f3f4f6}
-.banner{background:linear-gradient(90deg,#e0f2fe, #ccfbf1);border:1px solid var(--border);padding:1rem;border-radius:16px;margin:1rem 0}
-.whatsapp{position:fixed;z-index:50;right:18px;bottom:18px;background:#25D366;color:#fff;border-radius:999px;padding:.9rem 1rem;display:flex;align-items:center;gap:.6rem;box-shadow:0 10px 20px rgba(0,0,0,.15);font-weight:700}
-.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-"""
-
-main_js = """
-// Simple interactivity: mobile menu, fake add-to-cart, and year
-document.addEventListener('DOMContentLoaded', () => {
-  const toggle = document.querySelector('.mobile-toggle');
-  const menu = document.querySelector('.mobile-menu');
-  if (toggle && menu) toggle.addEventListener('click', () => menu.classList.toggle('open'));
-  const year = document.getElementById('year');
-  if (year) year.textContent = new Date().getFullYear();
-  document.querySelectorAll('[data-add]').forEach(btn=>{
-    btn.addEventListener('click',()=>{
-      alert('Added to inquiry list! We will contact you on WhatsApp shortly.');
-    });
-  });
-});
-"""
-
-pump_svg = """<svg xmlns='http://www.w3.org/2000/svg' width='960' height='600'>
-<defs><linearGradient id='g' x1='0' x2='1'><stop offset='0' stop-color='#e0f2fe'/><stop offset='1' stop-color='#f0f9ff'/></linearGradient></defs>
-<rect width='100%' height='100%' fill='url(#g)'/>
-<g transform='translate(100,100)'>
-<rect x='0' y='60' width='640' height='180' rx='22' fill='#93c5fd' stroke='#1d4ed8' stroke-width='6'/>
-<rect x='640' y='40' width='180' height='220' rx='20' fill='#60a5fa' stroke='#1d4ed8' stroke-width='6'/>
-<circle cx='560' cy='150' r='42' fill='#fff' stroke='#1d4ed8' stroke-width='6'/>
-<text x='20' y='160' font-size='48' font-family='Arial' fill='#1f2937'>Submersible Pump</text>
-</g>
-</svg>"""
-
-brand_svg = """<svg xmlns='http://www.w3.org/2000/svg' width='800' height='300'>
-<rect width='100%' height='100%' fill='#f1f5f9'/>
-<text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='48' font-family='Arial' fill='#0ea5e9'>Brand Logo</text>
-</svg>"""
-
-with open(os.path.join(img_dir, "pump.svg"), "w", encoding="utf-8") as f: f.write(pump_svg)
-with open(os.path.join(img_dir, "brand.svg"), "w", encoding="utf-8") as f: f.write(brand_svg)
-
-header = """
-<header class="header">
-  <div class="container nav">
-    <a class="brand" href="index.html">
-      <img src="assets/img/brand.svg" alt="Naif Enterprises logo" />
-      Naif Enterprises
-    </a>
-    <nav class="links" aria-label="Primary">
-      <a href="index.html">Home</a>
-      <a href="products.html">Products</a>
-      <a href="brands.html">Brands</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
+  <header>
+    <div><strong>NAIF ENTERPRISE</strong></div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Products</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
     </nav>
-    <div class="actions">
-      <a class="btn btn-outline" href="tel:+923185349548">Call</a>
-      <button class="btn mobile-toggle" aria-expanded="false" aria-controls="mobile-menu">Menu</button>
+    <div>📞 0333 9708541</div>
+  </header>
+
+  <section class="hero">
+    <h1>Direct Importer of Dongyin & Hydro Pro Pumps</h1>
+    <button>Explore Our Products</button>
+  </section>
+
+  <section class="products">
+    <div class="product-card">
+      <img src="images/submersible.jpg" alt="Submersible Pumps" />
+      <h3>Submersible Pumps</h3>
+      <a href="#">View More</a>
     </div>
-  </div>
-  <div id="mobile-menu" class="mobile-menu container">
-    <a href="index.html">Home</a> ·
-    <a href="products.html">Products</a> ·
-    <a href="brands.html">Brands</a> ·
-    <a href="about.html">About</a> ·
-    <a href="contact.html">Contact</a>
-  </div>
-</header>
-"""
-
-footer = """
-<footer class="footer">
-  <div class="container cols">
-    <div>
-      <strong>Naif Enterprises</strong>
-      <p>City Saddar Road, Shangai Plaza, Rawalpindi – Huge Stock Available</p>
-      <p><small>Service Area: All over Pakistan</small></p>
+    <div class="product-card">
+      <img src="images/motor.jpg" alt="Motors" />
+      <h3>Motors</h3>
+      <a href="#">View More</a>
     </div>
-    <div>
-      <strong>Explore</strong><br/>
-      <a href="products.html">Products</a><br/>
-      <a href="brands.html">Brands</a><br/>
-      <a href="about.html">About Us</a>
+    <div class="product-card">
+      <img src="images/solar.jpg" alt="Solar Pumps" />
+      <h3>Solar Pumps</h3>
+      <a href="#">View More</a>
     </div>
-    <div>
-      <strong>Support</strong><br/>
-      <a href="contact.html">Contact</a><br/>
-      <a href="#">Warranty Policy</a><br/>
-      <a href="#">Return & Service</a>
-    </div>
-    <div>
-      <strong>Contact</strong>
-      <p>Phone/WhatsApp: +92 318 534 9548</p>
-      <p>Email: alrehmantrader1000@gmail.com</p>
-    </div>
-  </div>
-  <div class="container"><small>© <span id="year"></span> Naif Enterprises. All rights reserved.</small></div>
-</footer>
-<a class="whatsapp" href="https://wa.me/923185349548" target="_blank" rel="noopener">WhatsApp</a>
-<script src="assets/main.js"></script>
-"""
+  </section>
 
-# Build product card html safely
-def card(title, lead):
-    return (
-        "<div class='card'>"
-        "<img src='assets/img/pump.svg' alt='Pump'/>"
-        f"<h3>{title}</h3>"
-        f"<p class='lead'>{lead}</p>"
-        "<div style='display:flex;gap:.5rem;margin-top:.6rem'>"
-        "<button class='btn' data-add>Add to Inquiry</button>"
-        "<a class='btn btn-outline' href='contact.html'>Get Price</a>"
-        "</div>"
-        "</div>"
-    )
+  <section class="about">
+    <h2>About Us</h2>
+    <p>Located in City Saddar Road, Rawalpindi, Naif Enterprise is a trusted importer and supplier of premium pump brands. We serve both wholesale and retail clients with top-quality products and service.</p>
+  </section>
 
-bore_cards = "".join([card(f'4" Stainless Steel Submersible — DY4-{i}', "Head: 60–120m · Flow: 3–5 m³/h · 0."+str(i)+" kW") for i in range(7,10)])
-agri_cards = "".join([card(f'6" Cast Iron — HP6-{i}', f"Head: 40–80m · Flow: 12–24 m³/h · {i}.0 kW") for i in range(3,6)])
-domestic_cards = "".join([card(f'Domestic Motor — RO-{i*2} Series', "Quiet operation · Energy efficient · Long life") for i in range(1,4)])
+  <section class="contact">
+    <h2>Call Us on WhatsApp</h2>
+    <p>0333 9708541</p>
+    <button>Contact Us</button>
+  </section>
 
-index_html = f"""<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Naif Enterprises — Submersible Pumps & Water Solutions</title>
-  <meta name="description" content="Naif Enterprises supplies submersible pumps, motors, and water solutions across Pakistan. Dongyin and Hydro Pro official stock." />
-  <link rel="icon" href="assets/img/brand.svg" />
-  <link rel="stylesheet" href="assets/styles.css" />
-  <script type="application/ld+json">
-  {json.dumps({
-    "@context":"https://schema.org",
-    "@type":"LocalBusiness",
-    "name":"Naif Enterprises",
-    "image":"assets/img/brand.svg",
-    "telephone":"+92 318 534 9548",
-    "address":{"@type":"PostalAddress","streetAddress":"City Saddar Road, Shangai Plaza","addressLocality":"Rawalpindi","addressCountry":"PK"},
-    "areaServed":"Pakistan",
-    "url":"https://example.com"
-  })}
-  </script>
-</head>
-<body>
-  {header}
-  <main class="container">
-    <section class="hero">
-      <div>
-        <div class="badges">
-          <span class="badge">Official Stock</span>
-          <span class="badge">Dongyin & Hydro Pro</span>
-          <span class="badge">Nationwide Delivery</span>
-        </div>
-        <h1>Reliable Submersible Pumps for Bore, Agriculture & Industry</h1>
-        <p>From domestic water supply to industrial flow, our curated lineup of submersible pumps and motors is tested for Pakistan’s voltage and water conditions.</p>
-        <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1rem">
-          <a class="btn" href="products.html">Browse Products</a>
-          <a class="btn btn-outline" href="contact.html">Get Quotation</a>
-        </div>
-      </div>
-      <div class="card">
-        <img src="assets/img/pump.svg" alt="Submersible pump visual" />
-        <ul style="margin:.6rem 0 0 1rem;color:#334155">
-          <li>Single & Three Phase</li>
-          <li>Stainless Steel & Cast Iron</li>
-          <li>Complete Accessories (Cables, Panels)</li>
-        </ul>
-      </div>
-    </section>
+  <footer>
+    &copy; 2025 Naif Enterprise | City Saddar Road, Rawalpindi | WhatsApp: 0333 9708541
+  </footer>
 
-    <section class="section">
-      <h2>Top Categories</h2>
-      <p class="lead">What are you looking for?</p>
-      <div class="grid cards-4">
-        <a class="card" href="products.html#bore">
-          <img src="assets/img/pump.svg" alt="Bore well pump" />
-          <h3>Bore Well Pumps</h3>
-          <p class="lead">4″, 6″, 8″ stages for deep installation.</p>
-        </a>
-        <a class="card" href="products.html#agri">
-          <img src="assets/img/pump.svg" alt="Agriculture pump" />
-          <h3>Agriculture Pumps</h3>
-          <p class="lead">High flow for fields and canals.</p>
-        </a>
-        <a class="card" href="products.html#domestic">
-          <img src="assets/img/pump.svg" alt="Domestic pump" />
-          <h3>Domestic / RO</h3>
-          <p class="lead">Quiet, efficient, long-life motors.</p>
-        </a>
-        <a class="card" href="products.html#accessories">
-          <img src="assets/img/pump.svg" alt="Accessories" />
-          <h3>Accessories</h3>
-          <p class="lead">Control panels, cables, starters & more.</p>
-        </a>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="banner">
-        <strong>Bulk & Dealer Inquiries:</strong> Preferential rates for projects and resellers. Call or WhatsApp now.
-      </div>
-      <div class="kpis">
-        <div class="kpi"><div class="num">10,000+</div><div class="label">Pumps in Stock</div></div>
-        <div class="kpi"><div class="num">1000+</div><div class="label">Dealers Served</div></div>
-        <div class="kpi"><div class="num">24–48h</div><div class="label">Dispatch Time</div></div>
-        <div class="kpi"><div class="num">PK Nationwide</div><div class="label">Delivery</div></div>
-      </div>
-    </section>
-  </main>
-  {footer}
 </body>
 </html>
-"""
-
-products_html = f"""<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Products — Naif Enterprises</title>
-  <link rel="icon" href="assets/img/brand.svg" />
-  <link rel="stylesheet" href="assets/styles.css" />
-</head>
-<body>
-  {header}
-  <main class="container">
-    <section class="section">
-      <h1>Our Products</h1>
-      <p class="lead">Official brands: Dongyin and Hydro Pro. Full submersible range with controllers and spares.</p>
-      <div id="filters" class="banner">
-        <strong>Filter:</strong>
-        <a href="#bore">Bore</a> ·
-        <a href="#agri">Agriculture</a> ·
-        <a href="#domestic">Domestic</a> ·
-        <a href="#accessories">Accessories</a>
-      </div>
-      <h2 id="bore">Bore Well Pumps</h2>
-      <div class="grid cards-3">
-        {bore_cards}
-      </div>
-      <h2 id="agri">Agriculture & High Flow</h2>
-      <div class="grid cards-3">
-        {agri_cards}
-      </div>
-      <h2 id="domestic">Domestic / RO</h2>
-      <div class="grid cards-3">
-        {domestic_cards}
-      </div>
-      <h2 id="accessories">Accessories</h2>
-      <table class="table">
-        <thead><tr><th>Item</th><th>Spec</th><th>Notes</th></tr></thead>
-        <tbody>
-          <tr><td>Submersible Cable</td><td>2.5–16mm²</td><td>Copper, PVC insulated</td></tr>
-          <tr><td>Control Panel</td><td>DOL / Star-Delta</td><td>Overload & dry-run protection</td></tr>
-          <tr><td>Starters</td><td>Single / Three Phase</td><td>Thermal relay included</td></tr>
-        </tbody>
-      </table>
-    </section>
-  </main>
-  {footer}
-</body>
-</html>
-"""
-
-brands_html = f"""<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Our Brands — Naif Enterprises</title>
-  <link rel="icon" href="assets/img/brand.svg" />
-  <link rel="stylesheet" href="assets/styles.css" />
-</head>
-<body>
-  {header}
-  <main class="container">
-    <section class="section">
-      <h1>Official Brands</h1>
-      <p class="lead">We stock and support the following brands with warranty and after-sales service.</p>
-      <div class="grid cards-3">
-        <div class="card">
-          <img src="assets/img/brand.svg" alt="Dongyin" />
-          <h3>Dongyin</h3>
-          <p>Complete range of submersible pumps and motors, trusted for durability and efficiency.</p>
-          <a class="btn btn-outline" href="products.html">View Products</a>
-        </div>
-        <div class="card">
-          <img src="assets/img/brand.svg" alt="Hydro Pro" />
-          <h3>Hydro Pro</h3>
-          <p>High-flow solutions for agriculture and industry with robust build quality.</p>
-          <a class="btn btn-outline" href="products.html">View Products</a>
-        </div>
-        <div class="card">
-          <img src="assets/img/brand.svg" alt="OEM / Projects" />
-          <h3>OEM / Projects</h3>
-          <p>Bulk procurement and custom specifications for contractors and government tenders.</p>
-          <a class="btn btn-outline" href="contact.html">Get Quotation</a>
-        </div>
-      </div>
-    </section>
-  </main>
-  {footer}
-</body>
-</html>
-"""
-
-about_html = f"""<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About — Naif Enterprises</title>
-  <link rel="icon" href="assets/img/brand.svg" />
-  <link rel="stylesheet" href="assets/styles.css" />
-</head>
-<body>
-  {header}
-  <main class="container">
-    <section class="section">
-      <h1>About Naif Enterprises</h1>
-      <p class="lead">We are a leading supplier of submersible pumps and accessories based in Rawalpindi, serving all over Pakistan.</p>
-      <div class="feature-list">
-        <div class="feature">
-          <h3>Huge Stock Availability</h3>
-          <p>Thousands of units ready for immediate dispatch to your site.</p>
-        </div>
-        <div class="feature">
-          <h3>Technical Guidance</h3>
-          <p>Get the right head, flow, voltage, and stage configuration for your requirement.</p>
-        </div>
-        <div class="feature">
-          <h3>Warranty & Service</h3>
-          <p>Backed by brand warranty and our in-house testing bench.</p>
-        </div>
-      </div>
-    </section>
-  </main>
-  {footer}
-</body>
-</html>
-"""
-
-contact_html = f"""<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact — Naif Enterprises</title>
-  <link rel="icon" href="assets/img/brand.svg" />
-  <link rel="stylesheet" href="assets/styles.css" />
-</head>
-<body>
-  {header}
-  <main class="container">
-    <section class="section">
-      <h1>Contact Us</h1>
-      <p class="lead">Get a quotation, check stock, or ask for technical help.</p>
-      <div class="grid cards-3">
-        <div class="card">
-          <h3>Rawalpindi Showroom</h3>
-          <p>City Saddar Road, Shangai Plaza</p>
-          <p><strong>Hours:</strong> Mon–Sat, 10am–8pm</p>
-          <p><strong>Phone:</strong> +92 318 534 9548</p>
-        </div>
-        <div class="card">
-          <h3>WhatsApp</h3>
-          <p>Click the green button below or message us directly.</p>
-          <a class="btn" href="https://wa.me/923185349548" target="_blank" rel="noopener">Open WhatsApp</a>
-        </div>
-        <div class="card">
-          <h3>Email</h3>
-          <p>alrehmantrader1000@gmail.com</p>
-          <a class="btn btn-outline" href="mailto:alrehmantrader1000@gmail.com">Send Email</a>
-        </div>
-      </div>
-      <form class="card" style="margin-top:1rem" onsubmit="event.preventDefault(); alert('Thanks! We will contact you shortly.');">
-        <h3>Quick Quote</h3>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
-          <label>Full Name<br/><input required style="width:100%;padding:.6rem;border:1px solid var(--border);border-radius:10px"/></label>
-          <label>Phone / WhatsApp<br/><input required style="width:100%;padding:.6rem;border:1px solid var(--border);border-radius:10px"/></label>
-        </div>
-        <label style="display:block;margin-top:.8rem">Product / Requirement<br/>
-          <textarea required rows="4" style="width:100%;padding:.6rem;border:1px solid var(--border);border-radius:10px"></textarea>
-        </label>
-        <button class="btn" style="margin-top:.8rem">Request Quote</button>
-      </form>
-    </section>
-  </main>
-  {footer}
-</body>
-</html>
-"""
-
-# Write files
-files = {
-  "index.html": index_html,
-  "products.html": products_html,
-  "brands.html": brands_html,
-  "about.html": about_html,
-  "contact.html": contact_html,
-  "assets/styles.css": styles_css,
-  "assets/main.js": main_js,
-}
-
-for path, content in files.items():
-  full_path = os.path.join(base_dir, path)
-  os.makedirs(os.path.dirname(full_path), exist_ok=True)
-  with open(full_path, "w", encoding="utf-8") as f:
-    f.write(content.strip()+"\n")
-
-# Create ZIP
-zip_path = "/mnt/data/naif-enterprises-website.zip"
-with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as z:
-  for root, dirs, filenames in os.walk(base_dir):
-    for filename in filenames:
-      full = os.path.join(root, filename)
-      rel = os.path.relpath(full, base_dir)
-      z.write(full, arcname=rel)
-
-zip_path
